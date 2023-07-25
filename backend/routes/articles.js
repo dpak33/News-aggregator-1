@@ -1,9 +1,11 @@
 const axios = require('axios');
 
-axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=YOUR_API_KEY')
+axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-dI7GRpc2JeNz6SDjllgaNHu9bOzJrjobgO')
     .then((response) => {
         // handle success
-        console.log(response.data.articles[0]);
+        response.data.news.forEach((article, index) => {
+            console.log(`Article ${index + 1}:`, article);
+        });
         // Additional handling here, for example, save the data to your database
         // Database.save(response.data);
     })
@@ -13,3 +15,10 @@ axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=YOUR_API_KEY')
         // Additional error handling, for example, log error details
         // ErrorLogger.log(error);
     });
+
+
+
+
+
+
+
