@@ -1,4 +1,7 @@
 const axios = require('axios');
+const Article = require('../schemas/ArticleSchema');
+
+//see chat for further info for modification to save to DB. 
 
 axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-dI7GRpc2JeNz6SDjllgaNHu9bOzJrjobgO')
     .then((response) => {
