@@ -14,7 +14,6 @@ axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-
     .then((response) => {
         console.log(response.data.news.length);
         let articlesData = response.data.news;
-        //console.log(articlesData);
 
         // Sort articles by date in descending order
         articlesData.sort((a, b) => {
@@ -28,7 +27,6 @@ axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-
 
         // Loop through each article data from the API
         articlesData.forEach(async (articleData) => {
-
             // Define the newArticle data
             let newArticle = new Article({
                 id: articleData.id,
@@ -42,13 +40,11 @@ axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-
                 published: new Date(articleData.published)
             });
 
-            console.log(newArticle);
-            // Update the document in the database or insert if it does not exist
             try {
-                const savedArticle = await newArticle.save();
-                console.log('Article saved successfully:', savedArticle);
+                let updated = await Article.updateOne({ id: newArticle.id }, newArticle.toObject(), { upsert: true }).exec();
+                console.log('Article updated successfully!');
             } catch (err) {
-                console.log('Error saving article:', err);
+                console.log('Error updating article:', err);
             }
         });
     })
