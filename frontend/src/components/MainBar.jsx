@@ -30,7 +30,12 @@ const MainBar = () => {
                         onMouseEnter={() => setHoveredTitle(article.title)}
                         onMouseLeave={() => setHoveredTitle("")}
                     >
-                        <img className="article-image" src={article.image} alt={article.title} />
+                        <img
+                            className="article-image"
+                            src={article.image}
+                            alt={article.title}
+                            onError={(e) => { e.target.onerror = null; e.target.src = altImage }}
+                        />
                     </div>
                 ))}
             </div>
