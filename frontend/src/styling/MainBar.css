@@ -1,0 +1,34 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 2 columns on small screens */
+    gap: 1rem;
+}
+
+@media (min-width: 600px) {
+
+    /* adjust breakpoint as needed */
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+        /* 3 columns on larger screens */
+    }
+}
+
+.grid-item {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    /* adjust timing as needed */
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    /* adjust scaling factor as needed */
+}
+
+.article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styling/MainBar.css';
+import altImage from '../altimage/Alt-image.jpeg';
 
 const MainBar = () => {
     const [articles, setArticles] = useState([]);
+    const [hoveredTitle, setHoveredTitle] = useState("");
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -19,12 +22,19 @@ const MainBar = () => {
 
     return (
         <div>
-            {articles.map((article, index) => (
-                <div key={index}>
-                    <h2>{article.title}</h2>
-                    <img src={article.image} alt={article.title} />
-                </div>
-            ))}
+            <div className="grid-container">
+                {articles.map((article, index) => (
+                    <div
+                        className="grid-item"
+                        key={index}
+                        onMouseEnter={() => setHoveredTitle(article.title)}
+                        onMouseLeave={() => setHoveredTitle("")}
+                    >
+                        <img className="article-image" src={article.image} alt={article.title} />
+                    </div>
+                ))}
+            </div>
+            <div className="title-display">{hoveredTitle}</div>
         </div>
     );
 };
