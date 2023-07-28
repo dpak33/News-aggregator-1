@@ -4,9 +4,7 @@
     grid-template-rows: repeat(5, 1fr);
     height: 75vh;
     width: 90vw;
-    /* Increased this to make grid wider, reducing gap at the sides */
     margin: 3vh auto 3vh;
-    /* Increased top margin to create more space at the top */
     gap: 1rem;
     perspective: 1300px;
 }
@@ -15,7 +13,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    /* changed transform to all */
     transform: rotateY(20deg);
     transform-style: preserve-3d;
 }
@@ -28,4 +27,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: sepia(100%);
+    /* add sepia filter */
+    transition: filter 0.3s ease-in-out;
+    /* add transition for filter */
+}
+
+.article-image:hover {
+    filter: sepia(0%);
+    /* remove sepia filter on hover */
 }
