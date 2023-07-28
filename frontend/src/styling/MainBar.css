@@ -2,13 +2,13 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    height: 80vh;
-    /* adjust this value as needed to fit the grid, title, and caption on screen */
-    width: 80vw;
-    /* adjust this value as needed to center the grid horizontally */
-    margin: auto;
-    /* centers the grid horizontally */
+    height: 75vh;
+    width: 90vw;
+    /* Increased this to make grid wider, reducing gap at the sides */
+    margin: 3vh auto 3vh;
+    /* Increased top margin to create more space at the top */
     gap: 1rem;
+    perspective: 1300px;
 }
 
 .grid-item {
@@ -16,12 +16,12 @@
     height: 100%;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
-    /* adjust timing as needed */
+    transform: rotateY(20deg);
+    transform-style: preserve-3d;
 }
 
 .grid-item:hover {
-    transform: scale(1.05);
-    /* adjust scaling factor as needed */
+    transform: rotateY(0deg) scale(1.05);
 }
 
 .article-image {
