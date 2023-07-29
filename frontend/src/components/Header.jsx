@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import '../styling/Header.css';
 
 const Header = () => {
     return (
-        <div>News Aggregator</div>
+        <h1 className="header">News Aggregator</h1>
     )
 }
 

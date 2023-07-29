@@ -4,10 +4,10 @@ import MainBar from '../components/MainBar'
 
 const Home = () => {
     return (
-        <h1>
+        <div>
             <Header />
             <MainBar />
-        </h1>
+        </div>
     )
 }
 

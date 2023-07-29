@@ -2,9 +2,17 @@
   text-align: center;
 }
 
+body {
+  color: #FFFFFF;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+body {
+  font-family: 'Bebas Neue', 'Cormorand Garamond';
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +40,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

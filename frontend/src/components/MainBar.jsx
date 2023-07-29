@@ -39,7 +39,7 @@ const MainBar = () => {
                     </div>
                 ))}
             </div>
-            <div className="title-display">{hoveredTitle}</div>
+            <h2 className="title-display">{hoveredTitle}</h2>
         </div>
     );
 };
