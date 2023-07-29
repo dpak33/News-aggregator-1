@@ -2,9 +2,10 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    height: 75vh;
-    width: 90vw;
+    height: 70vh;
+    width: 83vw;
     margin: 3vh auto 3vh;
+    /* Reduced top margin from 3vh to 1.5vh */
     gap: 1rem;
     perspective: 1300px;
 }

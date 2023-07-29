@@ -1,4 +1,22 @@
 .header {
-    font-size: 3em;
+    position: relative;
+    text-align: center;
+    /* other styles */
+}
+
+.header h1 {
+    font-size: 4.5em;
     /* Adjust this value as needed */
+}
+
+.close-icon {
+    position: absolute;
+    left: 20px;
+    /* Adjust this value as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    font-size: 3.5em;
+    font-weight: lighter;
+    /* Makes the "X" lines appear narrower */
 }
