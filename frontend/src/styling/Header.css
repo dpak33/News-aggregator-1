@@ -10,8 +10,8 @@
 
 .icon-wrapper {
     position: absolute;
-    left: 25px;
-    top: 50%;
+    left: 40px;
+    top: 40%;
     /* Increase this value to move the icon down */
     transform: scale(3.5);
     /* This will visually scale the icon */
