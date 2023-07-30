@@ -6,26 +6,24 @@ const Header = () => {
 
     return (
         <header className="header">
-            <i
-                className="close-icon material-symbols-outlined"
-                onClick={() => {
-                    console.log("clicked!");
-                    setIsOpen(!isOpen)
-                }}
-            >menu_open
-            </i>
-            {
-                isOpen && (
+            <div style={{ position: "relative" }}> {/* Add this wrapper */}
+                <i
+                    className="close-icon material-symbols-outlined"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    menu_open
+                </i>
+                {isOpen && (
                     <ul className="dropdown">
                         <li>Most Recent</li>
                         <li>Most Popular</li>
                         <li>Your Saved Articles</li>
                     </ul>
-                )
-            }
+                )}
+            </div> {/* End wrapper */}
             <h1>News Aggregator</h1>
             <span className="production-icon">Pakenham Productions</span>
-        </header >
+        </header>
     )
 }
 
