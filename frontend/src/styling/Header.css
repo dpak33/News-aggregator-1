@@ -1,7 +1,6 @@
 .header {
     position: relative;
     text-align: center;
-    /* other styles */
 }
 
 .header h1 {
@@ -12,12 +11,18 @@
 .close-icon {
     position: absolute;
     left: 25px;
-    /* Adjust this value as needed */
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 4em;
+}
+
+.production-icon {
+    position: absolute;
+    right: 25px;
     top: 40%;
     /* Adjusted from 50% to 40% to raise the icon */
     transform: translateY(-50%);
     padding: 10px;
-    font-size: 6em;
-    font-weight: bolder;
-    /* Makes the "X" lines appear narrower */
+    font-size: 2em;
+    font-family: 'Great Vibes', cursive;
 }

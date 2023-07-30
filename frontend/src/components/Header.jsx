@@ -4,8 +4,11 @@ import '../styling/Header.css';
 const Header = () => {
     return (
         <header className="header">
-            <span className="close-icon">: :</span>
+            <i className="close-icon material-symbols-outlined">
+                menu_open
+            </i>
             <h1>News Aggregator</h1>
+            <span className="production-icon">Pakenham Productions</span>
         </header>
     )
 }
