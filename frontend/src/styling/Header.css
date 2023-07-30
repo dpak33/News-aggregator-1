@@ -8,12 +8,21 @@
     /* Adjust this value as needed */
 }
 
-.close-icon {
-    cursor: pointer;
+.icon-wrapper {
     position: absolute;
     left: 25px;
-    top: 20%;
-    font-size: 3.5em;
+    top: 50%;
+    /* Increase this value to move the icon down */
+    transform: scale(3.5);
+    /* This will visually scale the icon */
+    cursor: pointer;
+}
+
+.close-icon {
+    position: relative;
+    /* Positioned relative to the wrapper */
+    font-size: 1em;
+    /* Set the actual font size back to 1em */
 }
 
 .production-icon {
@@ -29,15 +38,13 @@
 
 .dropdown {
     position: absolute;
-    left: 30px;
+    left: 80px;
     /* Adjust as needed */
-    top: 40%;
-    /* Adjust as needed */
+    top: -10%;
+    /* Decrease this value to move the dropdown list up */
     width: 200px;
     /* Adjust as needed */
     list-style-type: none;
-    transform: translateY(-50%);
-    z-index: 1;
 }
 
 .dropdown li {
