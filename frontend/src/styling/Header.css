@@ -9,11 +9,12 @@
 }
 
 .close-icon {
+    cursor: pointer;
     position: absolute;
     left: 25px;
     top: 40%;
     transform: translateY(-50%);
-    font-size: 4em;
+    font-size: 3.5em;
 }
 
 .production-icon {
@@ -25,4 +26,38 @@
     padding: 10px;
     font-size: 2em;
     font-family: 'Great Vibes', cursive;
+}
+
+.dropdown {
+    position: absolute;
+    left: 100%;
+    /* Adjust as needed */
+    top: 40%;
+    /* Adjust as needed */
+    background-color: #000;
+    /* Changed to black */
+    border: 1px solid #ddd;
+    /* Adjust as needed */
+    width: 200px;
+    /* Adjust as needed */
+    list-style-type: none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%);
+    /* Centers the dropdown vertically */
+}
+
+.dropdown li {
+    padding: 0;
+    /* Remove padding */
+    margin: 0;
+    /* Remove margin */
+    color: #fff;
+    /* White text color */
+}
+
+.dropdown li:hover {
+    background-color: #555;
+    /* Change to desired hover color */
+    color: #fff;
+    /* Keeps the text color white on hover */
 }
