@@ -37,7 +37,11 @@ const ArticleSchema = new mongoose.Schema({
     published: {
         type: Date,
         required: true,
-    }
+    },
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User' // assuming you have a User model
+    }]
 });
 
 module.exports = mongoose.model('Article', ArticleSchema);
