@@ -16,7 +16,7 @@
     overflow: hidden;
     transition: all 0.3s ease-in-out;
     /* changed transform to all */
-    transform: rotateY(20deg);
+    transform: rotateY(27deg);
     transform-style: preserve-3d;
 }
 
