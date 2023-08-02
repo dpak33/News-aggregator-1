@@ -39,7 +39,7 @@ const ArticleSchema = new mongoose.Schema({
         required: true,
     },
     likes: [{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User' // assuming you have a User model
     }]
 });
