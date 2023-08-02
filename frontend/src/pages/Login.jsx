@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 import axios from "axios";
+import '../styling/Auth.css';
 
 const Login = () => {
-
 
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -34,32 +34,31 @@ const Login = () => {
         }
     }
 
-
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="login">
 
-            <div className="w-[300px] flex space-y-5 flex-col">
-                <h1 className="font-semibold text-3xl text-blue-800">Login</h1>
+            <div className="login-container">
+                <h1 className="login-title">Login</h1>
 
                 <input
                     type="text"
-                    className="py-1 px-3 border-2 border-blue-800 focus:outline-none w-full"
+                    className="login-input"
                     placeholder="username"
                     onChange={(e) => setUserName(e.target.value)}
                     value={username}
                 />
                 <input
                     type="password"
-                    className="py-1 px-3 border-2 border-blue-800 focus:outline-none w-full"
+                    className="login-input"
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
-                <div className="flex justify-between items-center">
+                <div className="login-options">
 
-                    <Link className="underline" to="/register">Login</Link>
+                    <Link className="login-link" to="/register">Click here to register</Link>
 
-                    <button className="py-1 px-5 text-white bg-blue-800" onClick={loginUser}>LOGIN</button>
+                    <button className="login-button" onClick={loginUser}>LOGIN</button>
                 </div>
 
             </div>
@@ -67,6 +66,5 @@ const Login = () => {
         </div>
     )
 }
-
 
 export default Login;

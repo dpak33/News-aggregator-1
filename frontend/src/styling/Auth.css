@@ -1,0 +1,92 @@
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-title {
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+}
+
+.register-input {
+    padding: 10px;
+    border: 2px solid white;
+    width: 100%;
+    outline: none;
+    color: white;
+    background: black;
+}
+
+.register-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register-link {
+    text-decoration: underline;
+    color: white;
+}
+
+.register-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
+
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-title {
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+}
+
+.login-input {
+    padding: 10px;
+    border: 2px solid white;
+    width: 100%;
+    outline: none;
+    color: white;
+    background: black;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-link {
+    text-decoration: underline;
+    color: white;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+}
