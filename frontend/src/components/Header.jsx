@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styling/Header.css';
 
 const Header = () => {
@@ -16,7 +17,7 @@ const Header = () => {
             </div>
             {isOpen && (
                 <ul className="dropdown">
-                    <li>Login/signup</li>
+                    <li><Link to="/login">Login/signup</Link></li>
                     <li>Most Recent</li>
                     <li>Most Popular</li>
                     <li>Your Saved Articles</li>
