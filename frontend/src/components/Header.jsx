@@ -16,6 +16,7 @@ const Header = () => {
             </div>
             {isOpen && (
                 <ul className="dropdown">
+                    <li>Login/signup</li>
                     <li>Most Recent</li>
                     <li>Most Popular</li>
                     <li>Your Saved Articles</li>
