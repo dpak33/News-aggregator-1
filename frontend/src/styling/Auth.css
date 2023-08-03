@@ -54,6 +54,10 @@
     /* Assuming a 1em default, so scaled by 1.5x */
 }
 
+.login-input {
+    margin-bottom: 30px;
+}
+
 .register-options,
 .login-options {
     display: flex;
