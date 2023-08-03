@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh;
     padding-left: 90px;
+    background: linear-gradient(to top right, black 70%, white 30%);
 }
 
 .register-container {
