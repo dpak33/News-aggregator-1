@@ -80,7 +80,8 @@
     background-color: white;
     color: black;
     font-size: 1.5em;
-    /* Assuming a 1em default, so scaled by 1.5x */
+    border-radius: 30px;
+    font-family: 'Bebas Neue', 'Cormorand Garamond';
 }
 
 .register-input-fields input {
@@ -88,9 +89,9 @@
 }
 
 .register-input-fields input:nth-child(2n+1) {
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .register-input-fields input:nth-child(2n) {
-    margin-left: 15px;
+    margin-left: 20px;
 }
