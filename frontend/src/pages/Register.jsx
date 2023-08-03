@@ -34,47 +34,43 @@ const Register = () => {
 
     return (
         <div className="register">
-
             <div className="register-container">
                 <h1 className="register-title">Registration</h1>
-
-                <input
-                    type="text"
-                    className="register-input"
-                    placeholder="name"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                />
-                <input
-                    type="text"
-                    className="register-input"
-                    placeholder="username"
-                    onChange={(e) => setUserName(e.target.value)}
-                    value={username}
-                />
-                <input
-                    type="email"
-                    className="register-input"
-                    placeholder="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                />
-                <input
-                    type="password"
-                    className="register-input"
-                    placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                />
-                <div className="register-options">
-
+                <div className="register-input-fields">
+                    <input
+                        type="text"
+                        className="register-input"
+                        placeholder="name"
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                    />
+                    <input
+                        type="text"
+                        className="register-input"
+                        placeholder="username"
+                        onChange={(e) => setUserName(e.target.value)}
+                        value={username}
+                    />
+                    <input
+                        type="email"
+                        className="register-input"
+                        placeholder="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    <input
+                        type="password"
+                        className="register-input"
+                        placeholder="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
+                </div>
+                <div className="register-options" style={{ maxWidth: "450px" }}> {/* set the width as same as login container */}
                     <Link className="register-link" to="/login">Click Here to Login</Link>
-
                     <button className="register-button" onClick={registerUser}>REGISTER</button>
                 </div>
-
             </div>
-
         </div>
     )
 }
