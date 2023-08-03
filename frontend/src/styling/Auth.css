@@ -79,12 +79,14 @@
     /* Assuming a 1em default, so scaled by 1.5x */
 }
 
+.register-input-fields input {
+    margin-bottom: 30px;
+}
+
 .register-input-fields input:nth-child(2n+1) {
     margin-right: 15px;
-    margin-bottom: 30px;
 }
 
 .register-input-fields input:nth-child(2n) {
     margin-left: 15px;
-    margin-top: 30px;
 }
