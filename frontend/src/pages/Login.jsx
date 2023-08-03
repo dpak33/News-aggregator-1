@@ -38,6 +38,7 @@ const Login = () => {
         <div className="login">
 
             <div className="login-container">
+                <div className="back-arrow">Return home</div>
                 <h1 className="login-title">Login</h1>
 
                 <input

@@ -95,3 +95,11 @@
 .register-input-fields input:nth-child(2n) {
     margin-left: 20px;
 }
+
+.back-arrow::before {
+    content: "\2190 ";
+}
+
+.back-arrow {
+    font-size: 2.5em;
+}
