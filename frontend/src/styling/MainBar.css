@@ -38,3 +38,7 @@
     filter: sepia(0%);
     /* remove sepia filter on hover */
 }
+
+.title-display {
+    text-align: center;
+}
