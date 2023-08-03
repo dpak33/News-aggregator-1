@@ -7,7 +7,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div className="icon-wrapper"> {/* Wrap the icon with a div */}
+            <div className="icon-wrapper">
                 <i
                     className="close-icon material-symbols-outlined"
                     onClick={() => setIsOpen(!isOpen)}

@@ -56,6 +56,11 @@
     /* White text color */
 }
 
+.dropdown li a {
+    text-decoration: none;
+    color: white;
+}
+
 .dropdown li:hover {
     color: #fff;
     /* Keeps the text color white on hover */
