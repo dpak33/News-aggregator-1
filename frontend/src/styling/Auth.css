@@ -1,92 +1,63 @@
-.register {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.register-container {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.register-title {
-    font-size: 4em;
-    font-weight: bold;
-    color: white;
-}
-
-.register-input {
-    padding: 10px;
-    border: 2px solid white;
-    width: 100%;
-    outline: none;
-    color: white;
-    background: black;
-}
-
-.register-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.register-link {
-    text-decoration: underline;
-    color: white;
-}
-
-.register-button {
-    padding: 10px 20px;
-    background-color: white;
-    color: black;
-}
-
-
+.register,
 .login {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100vh;
+    padding-left: 90px;
 }
 
+.register-container,
 .login-container {
-    width: 300px;
+    width: 450px;
+    /* 1.5x of 300px */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    /* 1.5x of 20px */
 }
 
+.register-title,
 .login-title {
-    font-size: 4em;
+    font-size: 6em;
+    /* 1.5x of 4em */
     font-weight: bold;
     color: white;
 }
 
+.register-input,
 .login-input {
-    padding: 10px;
+    padding: 15px;
+    /* 1.5x of 10px */
     border: 2px solid white;
     width: 100%;
     outline: none;
     color: white;
     background: black;
+    font-size: 1.5em;
+    /* Assuming a 1em default, so scaled by 1.5x */
 }
 
+.register-options,
 .login-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.register-link,
 .login-link {
     text-decoration: underline;
     color: white;
+    font-size: 1.5em;
+    /* Assuming a 1em default, so scaled by 1.5x */
 }
 
+.register-button,
 .login-button {
-    padding: 10px 20px;
+    padding: 15px 30px;
+    /* 1.5x of 10px 20px */
     background-color: white;
     color: black;
+    font-size: 1.5em;
+    /* Assuming a 1em default, so scaled by 1.5x */
 }
