@@ -17,7 +17,7 @@ const Register = () => {
         };
         try {
             toast.loading('Loading...')
-            const response = await axios.post('api/auth/register', userObj);
+            const response = await axios.post('http://localhost:8000/api/auth/register', userObj);
             toast.dismiss();
             if (response.data.success) {
                 toast.success(response.data.message);

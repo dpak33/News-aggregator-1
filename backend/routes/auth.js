@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
 router.post('/register', async (req, res) => {
+    console.log(req.body);
     try {
         //checking for existing user below. If found, return error message. 
         const existingEmail = await User.findOne({ email: req.body.email });
