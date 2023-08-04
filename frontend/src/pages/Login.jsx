@@ -17,7 +17,7 @@ const Login = () => {
 
         try {
             toast.loading('Loading...');
-            const response = await axios.post('api/auth/login', userObj);
+            const response = await axios.post('http://localhost:8000/api/auth/login', userObj);
             toast.dismiss();
             if (response.data.success) {
                 toast.success(response.data.message);
