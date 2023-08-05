@@ -40,7 +40,9 @@ const Header = () => {
                         </li>
                     )}
                     <li>Most Recent</li>
-                    <li>Most Popular</li>
+                    <li>
+                        <Link to="/mostpopular">Most Popular</Link>
+                    </li>
                     <li>Your Saved Articles</li>
                 </ul>
             )}
