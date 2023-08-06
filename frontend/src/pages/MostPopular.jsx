@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import altImage from '../altimage/Alt-image.jpeg';
 import axios from 'axios';
+import '../styling/MostPopular.css';
 
 const MostPopular = () => {
 
@@ -21,12 +22,14 @@ const MostPopular = () => {
 
     return (
         <div className="article-list">
+            <div className="back-arrow-popular">Return home</div>
+            <h1 className="header-popular">Most Popular</h1>
             {articles.map((article, index) => (
                 <div key={index} className="article">
-                    <img src={article.image}
+                    <img className="article-image-popular" src={article.image}
                         alt={article.title}
                         onError={(e) => { e.target.onerror = null; e.target.src = altImage }} />
-                    <h2>{article.title}</h2>
+                    <h2 className="article-title-popular">{article.title}</h2>
                 </div>
             ))}
         </div>
