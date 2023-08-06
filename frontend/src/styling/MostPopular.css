@@ -7,10 +7,11 @@
 
 .top-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     padding: 0 2%;
+    position: relative;
 }
 
 .article-list {
@@ -46,6 +47,8 @@
     color: white;
     margin: 0;
     align-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .back-arrow-popular::before {
@@ -55,4 +58,8 @@
 .back-arrow-popular {
     font-size: 2.5em;
     cursor: pointer;
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
 }
