@@ -26,6 +26,7 @@ const MostPopular = () => {
             <div className="top-section">
                 <div className="back-arrow-popular">Return home</div>
                 <h1 className="header-popular">Most Popular</h1>
+                <span className="production-icon">Pakenham Productions</span>
                 <div></div>
             </div>
             <div className="article-list">
