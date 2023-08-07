@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 
 .top-section {
@@ -109,4 +110,34 @@
 
 .a {
     color: white;
+}
+
+.bg-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    /* Adjust based on your image's size or how big you want it */
+    height: 10px;
+    /* Adjust based on your image's size or how big you want it */
+    background: url('../assets/image3.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    background-attachment: fixed;
+}
+
+.article-container-popular::before {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url('../assets/image3.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 500px;
+    width: 500px;
+    background-size: 500px 500px;
+    /* This ensures the entire image is visible within the defined dimensions, maintaining its aspect ratio. */
+    background-position: bottom 50px left 70px;
 }

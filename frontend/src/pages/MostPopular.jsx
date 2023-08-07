@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../styling/MostPopular.css';
 import { truncateText } from '../helpers/stringhelpers';
 
+
 const MostPopular = () => {
 
     const [articles, setArticles] = useState([]);
@@ -23,6 +24,7 @@ const MostPopular = () => {
 
     return (
         <div className="article-container-popular">
+            <div className="bg-image"></div>
             <div className="top-section">
                 <div className="back-arrow-popular">Return home</div>
                 <h1 className="header-popular">Most Popular</h1>
@@ -43,7 +45,7 @@ const MostPopular = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }
 
