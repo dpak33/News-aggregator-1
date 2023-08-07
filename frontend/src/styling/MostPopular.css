@@ -115,12 +115,13 @@
 .bg-image {
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
+    /* This will push the image to the right */
     width: 10px;
     /* Adjust based on your image's size or how big you want it */
     height: 10px;
     /* Adjust based on your image's size or how big you want it */
-    background: url('../assets/negasset.jpg') no-repeat center center;
+    background: url('../assets/image1.jpg') no-repeat center center;
     background-size: cover;
     z-index: -1;
     background-attachment: fixed;
@@ -130,14 +131,16 @@
     content: "";
     position: fixed;
     bottom: 0;
-    left: 0;
+    right: 0;
+    /* This will position the pseudo-element to the bottom right */
     z-index: -1;
-    background-image: url('../assets/negasset.jpg');
+    background-image: url('../assets/image1.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    height: 750px;
-    width: 750px;
-    background-size: 750px 750px;
+    height: 1100px;
+    width: 300px;
+    background-size: 300px 1100px;
     /* This ensures the entire image is visible within the defined dimensions, maintaining its aspect ratio. */
-    background-position: bottom 40px left 10px;
+    background-position: bottom right 10px;
+    /* This will place the background image to the bottom right of the pseudo-element */
 }
