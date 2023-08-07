@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import altImage from '../altimage/Alt-image.jpeg';
 import axios from 'axios';
 import '../styling/MostPopular.css';
+import { truncateText, getFirstXWords } from '../helpers/stringhelpers';
 
 const MostPopular = () => {
 
@@ -33,7 +34,11 @@ const MostPopular = () => {
                         <img className="article-image-popular" src={article.image}
                             alt={article.title}
                             onError={(e) => { e.target.onerror = null; e.target.src = altImage }} />
-                        <h2 className="article-title-popular">{article.title}</h2>
+                        <div className="article-text">
+                            <h2 className="article-title-popular">{article.title}</h2>
+                            <h3 className="article-description-capped">{(article.description)}</h3>
+                            <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+                        </div>
                     </div>
                 ))}
             </div>
