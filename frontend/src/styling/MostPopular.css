@@ -120,7 +120,7 @@
     /* Adjust based on your image's size or how big you want it */
     height: 10px;
     /* Adjust based on your image's size or how big you want it */
-    background: url('../assets/image3.jpg') no-repeat center center;
+    background: url('../assets/negasset.jpg') no-repeat center center;
     background-size: cover;
     z-index: -1;
     background-attachment: fixed;
@@ -132,12 +132,12 @@
     bottom: 0;
     left: 0;
     z-index: -1;
-    background-image: url('../assets/image3.jpg');
+    background-image: url('../assets/negasset.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    height: 500px;
-    width: 500px;
-    background-size: 500px 500px;
+    height: 750px;
+    width: 750px;
+    background-size: 750px 750px;
     /* This ensures the entire image is visible within the defined dimensions, maintaining its aspect ratio. */
-    background-position: bottom 50px left 70px;
+    background-position: bottom 40px left 10px;
 }
