@@ -1,0 +1,62 @@
+.article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 650px;
+    height: 400px;
+    /* adjust as required */
+    margin: 10px 0;
+    padding: 20px;
+    /* space inside the card */
+    background-color: #2C2C2C;
+    /* or whatever color you prefer for the card */
+    border-radius: 8px;
+    box-shadow: -5px 5px 5px white;
+}
+
+.article-text {
+    width: 50%;
+    /* adjust as required */
+}
+
+.article-image-popular {
+    width: 50%;
+    /* adjust as required */
+    height: auto;
+    object-fit: cover;
+    margin-right: 20px;
+    /* spacing between the image and text */
+}
+
+.article-image-popular::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    /* Adjust these values to control the 'jutting out' effect */
+    left: -20%;
+    right: -20%;
+    bottom: -20%;
+    background-color: #ff9900;
+    /* Change this to the desired card color */
+    z-index: 1;
+    /* Keeps the card below the image */
+}
+
+.article:nth-child(odd) {
+    margin-left: -20%;
+    /* Adjust this percentage to control the amount of shift */
+}
+
+.article:nth-child(even) {
+    margin-left: 20%;
+    /* Adjust this percentage to control the amount of shift */
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    /* lifts the card up a bit */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* adds a shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* smooths the transition */
+}

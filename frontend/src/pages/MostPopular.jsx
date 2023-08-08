@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import altImage from '../altimage/Alt-image.jpeg';
 import axios from 'axios';
 import '../styling/MostPopular.css';
+import Article from '../components/Article';
 import { truncateText } from '../helpers/stringhelpers';
 
 
@@ -33,16 +33,7 @@ const MostPopular = () => {
             </div>
             <div className="article-list">
                 {articles.map((article, index) => (
-                    <div key={index} className="article">
-                        <img className="article-image-popular" src={article.image}
-                            alt={article.title}
-                            onError={(e) => { e.target.onerror = null; e.target.src = altImage }} />
-                        <div className="article-text">
-                            <h2 className="article-title-popular">{article.title}</h2>
-                            <h3 className="article-description-capped">{(article.description)}</h3>
-                            <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
-                        </div>
-                    </div>
+                    <Article key={index} article={article} />
                 ))}
             </div>
         </div >
