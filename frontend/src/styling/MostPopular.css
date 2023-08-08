@@ -141,6 +141,6 @@
     width: 800px;
     background-size: 800px 700px;
     /* This ensures the entire image is visible within the defined dimensions, maintaining its aspect ratio. */
-    background-position: bottom right 10px;
+    background-position: bottom right 0px;
     /* This will place the background image to the bottom right of the pseudo-element */
 }
