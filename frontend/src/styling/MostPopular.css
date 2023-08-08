@@ -121,7 +121,7 @@
     /* Adjust based on your image's size or how big you want it */
     height: 10px;
     /* Adjust based on your image's size or how big you want it */
-    background: url('../assets/image1.jpg') no-repeat center center;
+    background: url('../assets/sea-poster.jpeg') no-repeat center center;
     background-size: cover;
     z-index: -1;
     background-attachment: fixed;
@@ -134,12 +134,12 @@
     right: 0;
     /* This will position the pseudo-element to the bottom right */
     z-index: -1;
-    background-image: url('../assets/image1.jpg');
+    background-image: url('../assets/sea-poster.jpeg');
     background-repeat: no-repeat;
     background-size: contain;
-    height: 1100px;
-    width: 300px;
-    background-size: 300px 1100px;
+    height: 700px;
+    width: 800px;
+    background-size: 800px 700px;
     /* This ensures the entire image is visible within the defined dimensions, maintaining its aspect ratio. */
     background-position: bottom right 10px;
     /* This will place the background image to the bottom right of the pseudo-element */
