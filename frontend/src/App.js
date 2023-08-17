@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import MostPopular from './pages/MostPopular';
 import { Toaster } from 'react-hot-toast';
 
+
 function App() {
   return (
     <Router>

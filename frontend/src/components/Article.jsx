@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react'; // Import useState for local component state management
 import altImage from '../altimage/Alt-image.jpeg';
 import '../styling/Article.css';
+import { connect } from 'react-redux';
+import { likeArticle } from '../store/actions/userActions';
+import axios from 'axios'; // Assuming you have axios for HTTP requests
 
-const Article = ({ article }) => {
+const Article = ({ article, userId, likeArticle }) => {
+    const [isLiked, setIsLiked] = useState(false); // Local state to track if an article is liked
+
+    const handleLikeToggle = async () => {
+        if (!isLiked) {
+            try {
+                await axios.post(`http://localhost:8000/api/likes/like/${article.id}`, { userId });
+                setIsLiked(true);
+                likeArticle(article.id);  // Update the Redux store
+            } catch (error) {
+                console.error("Error liking the article:", error);
+            }
+        }
+        // Optionally handle "unliking" if you want to implement that feature
+    }
+
     return (
         <div className="article">
             <img className="article-image-popular" src={article.image}
@@ -12,12 +30,21 @@ const Article = ({ article }) => {
                 <h2 className="article-title-popular">{article.title}</h2>
                 <h3 className="article-description-capped">{article.description}</h3>
                 <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
+                <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
             </div>
         </div>
     );
 }
 
-export default Article;
+const mapStateToProps = state => ({
+    userId: state.user.userId
+});
+
+const mapDispatchToProps = {
+    likeArticle
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article);
 
 
 
