@@ -3,8 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 import axios from "axios";
 import '../styling/Auth.css';
+import { connect } from 'react-redux';
+import { setUser } from '../store/actions/userActions';
+import jwtDecode from 'jwt-decode';
 
-const Login = () => {
+const Login = (props) => {
 
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -20,8 +23,13 @@ const Login = () => {
             const response = await axios.post('http://localhost:8000/api/auth/login', userObj);
             toast.dismiss();
             if (response.data.success) {
+                const token = response.data.data;
+                const decodedToken = jwtDecode(token);
+                const userId = decodedToken._id;
+                console.log(userId);
                 toast.success(response.data.message);
                 localStorage.setItem("user", response.data.data);
+                props.setUser(userId);
                 navigate('/')
             }
             else {
@@ -68,4 +76,8 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapDispatchToProps = {
+    setUser
+};
+
+export default connect(null, mapDispatchToProps)(Login);

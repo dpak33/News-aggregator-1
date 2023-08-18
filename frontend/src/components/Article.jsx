@@ -11,6 +11,7 @@ const Article = ({ article, userId, likeArticle }) => {
     const handleLikeToggle = async () => {
         if (!isLiked) {
             try {
+                console.log("User ID being sent:", userId);
                 await axios.post(`http://localhost:8000/api/likes/like/${article.id}`, { userId });
                 setIsLiked(true);
                 likeArticle(article.id);  // Update the Redux store
