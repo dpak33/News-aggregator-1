@@ -7,3 +7,8 @@ export const likeArticle = (articleId) => ({
     type: 'LIKE_ARTICLE',
     payload: articleId
 });
+
+export const unlikeArticle = (articleId) => ({
+    type: 'UNLIKE_ARTICLE',
+    payload: articleId
+});

@@ -18,7 +18,15 @@ const Article = ({ article, userId, likeArticle }) => {
                 console.error("Error liking the article:", error);
             }
         }
-        // Optionally handle "unliking" if you want to implement that feature
+        else {
+            try {
+                await axios.post(`http://localhost:8000/api/likes/unlike/${article.id}`, { userId });
+                setIsLiked(false);
+                // You might need another Redux action to "unlike" the article in the store
+            } catch (error) {
+                console.error("Error unliking the article:", error);
+            }
+        }
     }
 
     return (
