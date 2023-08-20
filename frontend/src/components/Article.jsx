@@ -2,11 +2,11 @@ import React, { useState } from 'react'; // Import useState for local component 
 import altImage from '../altimage/Alt-image.jpeg';
 import '../styling/Article.css';
 import { connect } from 'react-redux';
-import { likeArticle } from '../store/actions/userActions';
+import { likeArticle, unlikeArticle } from '../store/actions/userActions';
 import axios from 'axios';
 import toast from "react-hot-toast";
 
-const Article = ({ article, userId, likeArticle }) => {
+const Article = ({ article, userId, likeArticle, unlikeArticle }) => {
 
     const [isLiked, setIsLiked] = useState(article && article.likes ? article.likes.includes(userId) : false); // Local state to track if an article is liked
 
@@ -41,7 +41,7 @@ const Article = ({ article, userId, likeArticle }) => {
                     }
                 );
                 setIsLiked(false);
-                // You might need another Redux action to "unlike" the article in the store
+                unlikeArticle(article.id);
             } catch (error) {
                 console.error("Error unliking the article:", error);
             }
@@ -68,14 +68,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    likeArticle
+    likeArticle,
+    unlikeArticle
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);
-
-
-
-
-
-
 

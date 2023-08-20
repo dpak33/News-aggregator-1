@@ -15,7 +15,7 @@ const Header = () => {
     const logoutUser = () => {
         localStorage.removeItem('user');
         toast.success('User logged out');
-        navigate("/"); // or use the navigate function from 'react-router-dom' if you have it available
+        navigate("/");
     };
 
     return (
