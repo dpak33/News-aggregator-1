@@ -3,7 +3,8 @@ import altImage from '../altimage/Alt-image.jpeg';
 import '../styling/Article.css';
 import { connect } from 'react-redux';
 import { likeArticle } from '../store/actions/userActions';
-import axios from 'axios'; // Assuming you have axios for HTTP requests
+import axios from 'axios';
+import toast from "react-hot-toast";
 
 const Article = ({ article, userId, likeArticle }) => {
 
@@ -23,6 +24,11 @@ const Article = ({ article, userId, likeArticle }) => {
                 likeArticle(article.id);  // Update the Redux store
             } catch (error) {
                 console.error("Error liking the article:", error);
+                let errorMessage = error.response && error.response.data && error.response.data.message
+                    ? error.response.data.message
+                    : "An unexpected error occurred.";
+
+                toast.error(errorMessage);
             }
         }
         else {
