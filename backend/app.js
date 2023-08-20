@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
 const cors = require('cors');
+const jwtMiddleWare = require('./middlewares/authMiddleware');
 
 require('dotenv').config();
 
@@ -21,7 +22,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/categories", categoriesRoute);
 app.use("/api/display", displayRoute);
 app.use("/api/user", userRoute);
-app.use("/api/likes", likesRoute);
+app.use("/api/likes", jwtMiddleWare, likesRoute);
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
 

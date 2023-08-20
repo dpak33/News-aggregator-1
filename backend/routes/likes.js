@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../schemas/ArticleSchema');
+const jwtMiddleWare = require('../middlewares/authMiddleware');
 
-router.post('/like/:articleId', async (req, res) => {
-    const userId = req.body.userId;  // Assuming you send the userId in the request body
 
+router.post('/like/:articleId', jwtMiddleWare, async (req, res) => {
+    const userId = req.user._id;  // Assuming you send the userId in the request body
     try {
         const article = await Article.findOne({ id: req.params.articleId });
 
@@ -31,8 +32,8 @@ router.post('/like/:articleId', async (req, res) => {
     }
 });
 
-router.post('/unlike/:articleId', async (req, res) => {
-    const userId = req.body.userId;  // Assuming you send the userId in the request body
+router.post('/unlike/:articleId', jwtMiddleWare, async (req, res) => {
+    const userId = req.user._id;  // Assuming you send the userId in the request body
 
     try {
         const article = await Article.findOne({ id: req.params.articleId });

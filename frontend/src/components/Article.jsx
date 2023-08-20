@@ -12,7 +12,12 @@ const Article = ({ article, userId, likeArticle }) => {
         if (!isLiked) {
             try {
                 console.log("User ID being sent:", userId);
-                await axios.post(`http://localhost:8000/api/likes/like/${article.id}`, { userId });
+                await axios.post(`http://localhost:8000/api/likes/like/${article.id}`, { userId },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('user')}`
+                        }
+                    });
                 setIsLiked(true);
                 likeArticle(article.id);  // Update the Redux store
             } catch (error) {
@@ -21,7 +26,13 @@ const Article = ({ article, userId, likeArticle }) => {
         }
         else {
             try {
-                await axios.post(`http://localhost:8000/api/likes/unlike/${article.id}`, { userId });
+                await axios.post(`http://localhost:8000/api/likes/unlike/${article.id}`, { userId },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('user')}`
+                        }
+                    }
+                );
                 setIsLiked(false);
                 // You might need another Redux action to "unlike" the article in the store
             } catch (error) {
