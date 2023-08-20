@@ -5,9 +5,40 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MostPopular from './pages/MostPopular';
 import { Toaster } from 'react-hot-toast';
-
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUser } from './store/actions/userActions';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/user/get-user-info', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('user')}`
+          }
+        });
+        console.log(response.data);
+        if (response.data.success) {
+          const userInfo = response.data.data;
+          // Assuming you have a Redux action to set user information
+          dispatch(setUser(userInfo));
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    // Only attempt to fetch user info if there's a token in local storage
+    if (localStorage.getItem('user')) {
+      fetchUserInfo();
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <Toaster position="top-center" reverseOrder={false} />
