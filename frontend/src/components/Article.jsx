@@ -6,7 +6,8 @@ import { likeArticle } from '../store/actions/userActions';
 import axios from 'axios'; // Assuming you have axios for HTTP requests
 
 const Article = ({ article, userId, likeArticle }) => {
-    const [isLiked, setIsLiked] = useState(false); // Local state to track if an article is liked
+
+    const [isLiked, setIsLiked] = useState(article && article.likes ? article.likes.includes(userId) : false); // Local state to track if an article is liked
 
     const handleLikeToggle = async () => {
         if (!isLiked) {

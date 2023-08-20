@@ -13,6 +13,7 @@ const MostPopular = () => {
         const fetchArticles = async () => {
             try {
                 const res = await axios.get('http://localhost:8000/api/display/allArticles');
+                console.log(res);
                 setArticles(res.data);
             }
             catch (err) {
