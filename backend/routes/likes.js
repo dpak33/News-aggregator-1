@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../schemas/ArticleSchema');
+const User = require('../schemas/UserSchema');
 const jwtMiddleWare = require('../middlewares/authMiddleware');
 
 
@@ -20,9 +21,11 @@ router.post('/like/:articleId', jwtMiddleWare, async (req, res) => {
 
 
         article.likes.push(userId);
-
-
         await article.save();
+
+        const user = await User.findById(userId);
+        user.likedArticles.push(req.params.articleId);
+        await user.save();
 
         res.json({ message: 'Article liked successfully' });
 
@@ -49,9 +52,11 @@ router.post('/unlike/:articleId', jwtMiddleWare, async (req, res) => {
 
 
         article.likes.pull(userId);
-
-
         await article.save();
+
+        const user = await User.findById(userId);
+        user.likedArticles.pull(req.params.articleId);
+        await user.save();
 
         res.json({ message: 'Article unliked successfully' });
 

@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setUser } from './store/actions/userActions';
+import { setUserInfo } from './store/actions/userActions';
 
 function App() {
 
@@ -24,9 +24,12 @@ function App() {
         });
         console.log(response.data);
         if (response.data.success) {
-          const userInfo = response.data.data;
+          const userInfo = {
+            userId: response.data.data._id,
+            likedArticles: response.data.data.likedArticles
+          };
           // Assuming you have a Redux action to set user information
-          dispatch(setUser(userInfo));
+          dispatch(setUserInfo(userInfo));
         }
       } catch (error) {
         console.error("Error fetching user info:", error);
