@@ -22,7 +22,6 @@ function App() {
             'Authorization': `Bearer ${localStorage.getItem('user')}`
           }
         });
-        console.log(response.data);
         if (response.data.success) {
           const userInfo = {
             userId: response.data.data._id,

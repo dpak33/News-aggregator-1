@@ -56,11 +56,14 @@ const Article = ({ article, userId, likeArticle, unlikeArticle }) => {
             <div className="article-text">
                 <h2 className="article-title-popular">{article.title}</h2>
                 <h3 className="article-description-capped">{article.description}</h3>
-                <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
-                <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
-            </div>
-            <div>
-                <h4 className="article-likes"> {article.likes.length} likes </h4>
+                <div className="article-actions">
+                    <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
+                    <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
+                    <div className="article-likes-container">
+                        <span className="article-likes">{article.likes.length}</span>
+                        <span> likes</span>
+                    </div>
+                </div>
             </div>
         </div>
     );
