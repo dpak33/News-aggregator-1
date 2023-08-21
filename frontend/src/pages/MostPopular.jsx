@@ -12,7 +12,7 @@ const MostPopular = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get('http://localhost:8000/api/display/allArticles');
+                const res = await axios.get('http://localhost:8000/api/display/mostpopularArticles');
                 console.log(res);
                 setArticles(res.data);
             }

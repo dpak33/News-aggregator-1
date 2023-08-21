@@ -24,3 +24,14 @@ router.get('/allArticles', async (req, res) => {
 });
 
 module.exports = router;
+
+router.get('/mostpopularArticles', async (req, res) => {
+    try {
+        const articles = await Article.find().sort({ likes: -1 }).limit(40);
+        res.json(articles);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+module.exports = router;
