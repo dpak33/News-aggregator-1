@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const Article = ({ article, userId, likeArticle, unlikeArticle }) => {
 
     const [isLiked, setIsLiked] = useState(article && article.likes ? article.likes.includes(userId) : false); // Local state to track if an article is liked
+    const likesCount = article.likesCount !== undefined ? article.likesCount : article.likes.length;
 
     const handleLikeToggle = async () => {
         if (!isLiked) {
@@ -60,7 +61,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle }) => {
                     <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
                     <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
                     <div className="article-likes-container">
-                        <span className="article-likes">{article.likes.length}</span>
+                        <span className="article-likes">{likesCount}</span>
                         <span> likes</span>
                     </div>
                 </div>

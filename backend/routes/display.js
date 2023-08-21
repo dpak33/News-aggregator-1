@@ -27,10 +27,35 @@ module.exports = router;
 
 router.get('/mostpopularArticles', async (req, res) => {
     try {
-        const articles = await Article.find().sort({ likes: -1 }).limit(40);
+        const articles = await Article.aggregate([
+            {
+                $project: {
+                    title: 1,
+                    description: 1,
+                    image: 1,
+                    url: 1,
+                    author: 1,
+                    language: 1,
+                    category: 1,
+                    published: 1,
+                    likesCount: {
+                        $cond: [
+                            { $isArray: "$likes" },
+                            { $size: "$likes" },
+                            0
+                        ]
+                    }, likes: 1,
+                }
+            },
+            { $sort: { likesCount: -1 } },
+            { $limit: 40 }
+        ]);
+
+        console.log(articles);
         res.json(articles);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error(err);
+        res.status(500).json({ message: err });
     }
 });
 

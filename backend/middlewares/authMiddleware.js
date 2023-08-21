@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
 
     try {
         const user = jwt.verify(token, process.env.SECRET);
-        console.log('Verified JWT content:', user);
         req.user = user;
         next();
     } catch (error) {
