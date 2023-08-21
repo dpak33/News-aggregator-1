@@ -59,6 +59,9 @@ const Article = ({ article, userId, likeArticle, unlikeArticle }) => {
                 <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
                 <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
             </div>
+            <div>
+                <h4 className="article-likes"> {article.likes.length} likes </h4>
+            </div>
         </div>
     );
 }
