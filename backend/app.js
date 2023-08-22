@@ -13,6 +13,7 @@ const categoriesRoute = require("./routes/categories");
 const displayRoute = require("./routes/display");
 const userRoute = require("./routes/user");
 const likesRoute = require("./routes/likes");
+const savesRoute = require("./routes/saves");
 
 const mongodbConnection = require('./config/mongoDBConnection');
 const port = 8000;
@@ -23,6 +24,7 @@ app.use("/api/categories", categoriesRoute);
 app.use("/api/display", displayRoute);
 app.use("/api/user", userRoute);
 app.use("/api/likes", jwtMiddleWare, likesRoute);
+app.use("/api/saves", jwtMiddleWare, savesRoute);
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
 

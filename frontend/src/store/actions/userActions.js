@@ -17,3 +17,8 @@ export const unlikeArticle = (articleId) => ({
     type: 'UNLIKE_ARTICLE',
     payload: articleId
 });
+
+export const saveArticle = (articleID) => ({
+    type: 'SAVE_ARTICLE',
+    payload: articleID
+});

@@ -1,6 +1,7 @@
 const initialState = {
     userId: null,
-    likedArticles: []
+    likedArticles: [],
+    savedArticles: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,7 +16,8 @@ const userReducer = (state = initialState, action) => {
             const updatedState = {
                 ...state,
                 userId: action.payload.userId,
-                likedArticles: action.payload.likedArticles
+                likedArticles: action.payload.likedArticles,
+                savedArticles: action.payload.savedArticles
             };
             return updatedState;
 
@@ -30,6 +32,12 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 likedArticles: state.likedArticles.filter(articleId => articleId !== action.payload)
             };
+
+        case 'SAVE_ARTICLE':
+            if (!state.savedArticles.includes(action.payload)) {
+                return { ...state, savedArticles: [...state.savedArticles, action.payload] };
+            }
+            return state;
 
         default:
             return state;
