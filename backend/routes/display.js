@@ -30,6 +30,7 @@ router.get('/mostpopularArticles', async (req, res) => {
         const articles = await Article.aggregate([
             {
                 $project: {
+                    id: 1,
                     title: 1,
                     description: 1,
                     image: 1,
