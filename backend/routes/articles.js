@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-dI7GRpc2JeNz6SDjllgaNHu9bOzJrjobgO')
     .then((response) => {
-        console.log(response.data.news.length);
+        //console.log(response.data.news.length);
         let articlesData = response.data.news;
 
         // Sort articles by date in descending order

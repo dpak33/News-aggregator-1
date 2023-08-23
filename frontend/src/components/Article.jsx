@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, savedArticles }) => {
 
+    //console.log(article.id);
+
     const [isLiked, setIsLiked] = useState(article && article.likes ? article.likes.includes(userId) : false); // Local state to track if an article is liked
     const [isSaved, setIsSaved] = useState(savedArticles ? savedArticles.includes(article.id) : false);
     const likesCount = article.likesCount !== undefined ? article.likesCount : article.likes.length;
@@ -53,7 +55,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, sav
     const handleSaveToggle = async () => {
         if (!isSaved) {
             try {
-                await axios.post(`http://localhost:8000/api/saves/save/${article.id}`,
+                await axios.post(`http://localhost:8000/api/saves/save/${article.id}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MostPopular from './pages/MostPopular';
+import YourSaved from './pages/YourSaved';
 import { Toaster } from 'react-hot-toast';
 import React, { useEffect } from 'react';
 import axios from 'axios';
@@ -25,7 +26,8 @@ function App() {
         if (response.data.success) {
           const userInfo = {
             userId: response.data.data._id,
-            likedArticles: response.data.data.likedArticles
+            likedArticles: response.data.data.likedArticles,
+            savedArticles: response.data.data.savedArticles
           };
           // Assuming you have a Redux action to set user information
           dispatch(setUserInfo(userInfo));
@@ -49,16 +51,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/mostpopular" element={<MostPopular />} />
+        <Route path="/yoursaved" element={<YourSaved />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-
-
-
-
-

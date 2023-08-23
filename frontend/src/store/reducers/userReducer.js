@@ -16,8 +16,8 @@ const userReducer = (state = initialState, action) => {
             const updatedState = {
                 ...state,
                 userId: action.payload.userId,
-                likedArticles: action.payload.likedArticles,
-                savedArticles: action.payload.savedArticles
+                likedArticles: action.payload.likedArticles || [],
+                savedArticles: action.payload.savedArticles || []
             };
             return updatedState;
 
@@ -34,6 +34,7 @@ const userReducer = (state = initialState, action) => {
             };
 
         case 'SAVE_ARTICLE':
+            console.log('saved articles: ' + state.savedArticles);
             if (!state.savedArticles.includes(action.payload)) {
                 return { ...state, savedArticles: [...state.savedArticles, action.payload] };
             }

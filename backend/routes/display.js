@@ -52,7 +52,6 @@ router.get('/mostpopularArticles', async (req, res) => {
             { $limit: 40 }
         ]);
 
-        console.log(articles);
         res.json(articles);
     } catch (err) {
         console.error(err);

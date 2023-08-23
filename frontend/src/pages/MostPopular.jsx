@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styling/MostPopular.css';
+import '../styling/Pages.css';
 import Article from '../components/Article';
 import { truncateText } from '../helpers/stringhelpers';
 
