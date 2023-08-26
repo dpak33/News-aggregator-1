@@ -1,44 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../styling/Pages.css';
-import Article from '../components/Article';
-import { truncateText } from '../helpers/stringhelpers';
+import ArticleList from '../helpers/ArticleList';
 
 
-const MostPopular = () => {
+const MostRecent = () => {
 
-    const [articles, setArticles] = useState([]);
-
-    useEffect(() => {
-        const fetchArticles = async () => {
-            try {
-                const res = await axios.get('http://localhost:8000/api/display/mostpopularArticles');
-                console.log(res.data);
-                setArticles(res.data);
-            }
-            catch (err) {
-                console.error(err);
-            }
-        };
-        fetchArticles();
-    }, []);
-
-    return (
-        <div className="article-container-pages">
-            <div className="bg-image"></div>
-            <div className="top-section">
-                <div className="back-arrow-pages">Return home</div>
-                <h1 className="header-pages">Most Popular</h1>
-                <span className="production-icon">Pakenham Productions</span>
-                <div></div>
-            </div>
-            <div className="article-list">
-                {articles.map((article, index) => (
-                    <Article key={index} article={article} />
-                ))}
-            </div>
-        </div >
-    )
+    const route = "http://localhost:8000/api/display/mostpopularArticles";
+    return <ArticleList route={route} pageTitle="Most Popular" />;
 }
 
-export default MostPopular
+export default MostRecent;
