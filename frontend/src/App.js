@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MostPopular from './pages/MostPopular';
 import YourSaved from './pages/YourSaved';
+import MostRecent from './pages/MostRecent';
 import { Toaster } from 'react-hot-toast';
 import React, { useEffect } from 'react';
 import axios from 'axios';
@@ -52,6 +53,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/mostpopular" element={<MostPopular />} />
         <Route path="/yoursaved" element={<YourSaved />} />
+        <Route path="/mostrecent" element={<MostRecent />} />
       </Routes>
     </Router>
   );

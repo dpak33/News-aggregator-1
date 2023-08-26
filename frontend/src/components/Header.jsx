@@ -39,7 +39,9 @@ const Header = () => {
                             <Link to="/login">Login/Signup</Link>
                         </li>
                     )}
-                    <li>Most Recent</li>
+                    <li>
+                        <Link to="/mostrecent">Most Recent</Link>
+                    </li>
                     <li>
                         <Link to="/mostpopular">Most Popular</Link>
                     </li>
