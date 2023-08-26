@@ -4,14 +4,14 @@ import '../styling/Pages.css';
 import Article from '../components/Article';
 
 
-const ArticleList = ({ route, pageTitle }) => {
+const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
 
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get(route);
+                const res = await axios.get(route, fetchConfig);
                 console.log(res.data);
                 setArticles(res.data);
             }
