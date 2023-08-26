@@ -1,4 +1,4 @@
-.article-container-popular {
+.article-container-pages {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
 }
 
 
-.header-popular {
+.header-pages {
     font-size: 4.5em;
     font-weight: bold;
     color: white;
@@ -33,11 +33,11 @@
     margin-right: auto;
 }
 
-.back-arrow-popular::before {
+.back-arrow-pages::before {
     content: "\2190 ";
 }
 
-.back-arrow-popular {
+.back-arrow-pages {
     font-size: 2.5em;
     cursor: pointer;
     position: absolute;
@@ -71,7 +71,7 @@
     clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
 }
 
-.article-container-popular::before {
+.article-container-pages::before {
     content: "";
     position: fixed;
     bottom: 0;

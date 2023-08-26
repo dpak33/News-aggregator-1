@@ -24,11 +24,11 @@ const MostRecent = () => {
     }, []);
 
     return (
-        <div className="article-container-popular">
+        <div className="article-container-pages">
             <div className="bg-image"></div>
             <div className="top-section">
-                <div className="back-arrow-popular">Return home</div>
-                <h1 className="header-popular">Most Recent</h1>
+                <div className="back-arrow-pages">Return home</div>
+                <h1 className="header-pages">Most Recent</h1>
                 <span className="production-icon">Pakenham Productions</span>
                 <div></div>
             </div>
