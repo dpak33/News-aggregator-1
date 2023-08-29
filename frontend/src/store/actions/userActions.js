@@ -22,3 +22,8 @@ export const saveArticle = (articleID) => ({
     type: 'SAVE_ARTICLE',
     payload: articleID
 });
+
+export const unsaveArticle = (articleID) => ({
+    type: 'UNSAVE_ARTICLE',
+    payload: articleID
+});

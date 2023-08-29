@@ -2,11 +2,11 @@ import React, { useState } from 'react'; // Import useState for local component 
 import altImage from '../altimage/Alt-image.jpeg';
 import '../styling/Article.css';
 import { connect } from 'react-redux';
-import { likeArticle, unlikeArticle, saveArticle } from '../store/actions/userActions';
+import { likeArticle, unlikeArticle, saveArticle, unsaveArticle } from '../store/actions/userActions';
 import axios from 'axios';
 import toast from "react-hot-toast";
 
-const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, savedArticles }) => {
+const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, unsaveArticle, savedArticles }) => {
 
     //console.log(article.id);
 
@@ -72,6 +72,26 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, sav
                 toast.error(errorMessage);
             }
         }
+        else {
+            try {
+                await axios.post(`http://localhost:8000/api/saves/unsave/${article.id}`, { userId },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('user')}`
+                        }
+                    }
+                );
+                setIsSaved(false);
+                unsaveArticle(article.id);
+            } catch (error) {
+                console.error("Error unsaving the article:", error);
+                let errorMessage = error.response && error.response.data && error.response.data.message
+                    ? error.response.data.message
+                    : "An unexpected error occurred.";
+
+                toast.error(errorMessage);
+            }
+        }
     }
 
     return (
@@ -89,7 +109,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, sav
                         <span className="article-likes">{likesCount}</span>
                         <span> likes</span>
                     </div>
-                    <button onClick={handleSaveToggle}>Save</button>
+                    <button onClick={handleSaveToggle}>{isSaved ? "Unsave" : "Save"}</button>
                 </div>
             </div>
         </div>
@@ -104,8 +124,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     likeArticle,
     unlikeArticle,
-    saveArticle
+    saveArticle,
+    unsaveArticle
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);
-
