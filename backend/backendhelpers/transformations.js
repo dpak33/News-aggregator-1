@@ -6,15 +6,23 @@ const transformGuardianArticle = (guardianArticle) => {
         url: guardianArticle.webUrl,
         author: guardianArticle.fields.byline,
         image: guardianArticle.fields.thumbnail,
-        language: 'en',  // The Guardian is in English, you could map this dynamically if you want
+        language: 'en',
         category: guardianArticle.sectionName,
         published: new Date(guardianArticle.webPublicationDate)
     };
 };
 
-const transformNYTimesArticle = (NYTimesArticle) => {
+const transformNYTimesArticle = (nyArticle) => {
     return {
-
+        id: nyArticle.uri,
+        title: nyArticle.title,
+        description: nyArticle.abstract,
+        url: nyArticle.url,
+        author: nyArticle.byline,
+        image: nyArticle.multimedia && nyArticle.multimedia.length > 0 ? nyArticle.multimedia[0].url : null,
+        language: 'en',  // Since it's the NY Times, it's likely English
+        category: nyArticle.section,
+        published: new Date(nyArticle.published_date)
     };
 }
 
