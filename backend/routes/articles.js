@@ -1,6 +1,8 @@
 const axios = require('axios');
 const Article = require('../schemas/ArticleSchema');
 const mongoose = require('mongoose');
+const transformations = require('../backendhelpers/transformations');
+const { transformGuardianArticle, transformNYTimesArticle } = transformations;
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI, {
