@@ -1,4 +1,4 @@
-const transformGuardianArticle = (GuardianArticle) => {
+const transformGuardianArticle = (guardianArticle) => {
     return {
         id: guardianArticle.id,
         title: guardianArticle.fields.headline,
