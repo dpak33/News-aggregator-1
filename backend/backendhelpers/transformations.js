@@ -26,7 +26,22 @@ const transformNYTimesArticle = (nyArticle) => {
     };
 }
 
+const transformCurrentsArticle = (currentsArticle) => {
+    return {
+        id: currentsArticle.id,
+        title: currentsArticle.title,
+        description: currentsArticle.description,
+        url: currentsArticle.url,
+        author: currentsArticle.author,
+        image: currentsArticle.image,
+        language: currentsArticle.language,
+        category: currentsArticle.category,
+        published: new Date(currentsArticle.published)
+    };
+};
+
 module.exports = {
     transformNYTimesArticle,
-    transformGuardianArticle
+    transformGuardianArticle,
+    transformCurrentsArticle
 }

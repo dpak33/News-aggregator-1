@@ -2,7 +2,7 @@ const axios = require('axios');
 const Article = require('../schemas/ArticleSchema');
 const mongoose = require('mongoose');
 const transformations = require('../backendhelpers/transformations');
-const { transformGuardianArticle, transformNYTimesArticle } = transformations;
+const { transformCurrentsArticle, transformGuardianArticle, transformNYTimesArticle } = transformations;
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -12,51 +12,40 @@ mongoose.connect(process.env.MONGODB_URI, {
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('Could not connect to MongoDB...', err));
 
-axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-dI7GRpc2JeNz6SDjllgaNHu9bOzJrjobgO')
-    .then((response) => {
-        //console.log(response.data.news);
-        let articlesData = response.data.news;
+const currentsAPI = axios.get('https://api.currentsapi.services/v1/latest-news?apiKey=e7iyp7IB4DSu8-dI7GRpc2JeNz6SDjllgaNHu9bOzJrjobgO');
+const guardianAPI = axios.get('https://content.guardianapis.com/search?order-by=newest&show-fields=byline%2Cthumbnail%2Cheadline%2CbodyText&api-key=5d82019f-d864-4447-b34d-1ecf955ea762');
+const nyTimesAPI = axios.get('https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=OAChSwo5sGj7xEQRj8bQ9NLGBIHsM5iA');
 
-        // Sort articles by date in descending order
-        articlesData.sort((a, b) => {
-            let dateA = new Date(a.published);
-            let dateB = new Date(b.published);
-            return dateB - dateA; // for descending order
+Promise.all([currentsAPI, guardianAPI, nyTimesAPI])
+    .then((responses) => {
+        const currentsArticles = responses[0].data.news.slice(0, 100);
+        const guardianArticles = responses[1].data.response.results.slice(0, 100);
+        const nyTimesArticles = responses[2].data.results.slice(0, 100);
+
+        const transformedCurrents = currentsArticles.map(article => {
+            // Assuming you have a transformCurrentsArticle function
+            return transformCurrentsArticle(article);
         });
 
-        // Limit to the first 100 articles
-        articlesData = articlesData.slice(0, 100);
+        const transformedGuardian = guardianArticles.map(article => {
+            return transformGuardianArticle(article);
+        });
 
-        // Loop through each article data from the API
-        articlesData.forEach(async (articleData) => {
-            // Define the newArticle data
-            let newArticle = new Article({
-                id: articleData.id,
-                title: articleData.title,
-                description: articleData.description,
-                url: articleData.url,
-                author: articleData.author,
-                image: articleData.image,
-                language: articleData.language,
-                category: articleData.category,
-                published: new Date(articleData.published)
-            });
+        const transformedNYTimes = nyTimesArticles.map(article => {
+            return transformNYTimesArticle(article);
+        });
 
+        const allArticles = [...transformedCurrents, ...transformedGuardian, ...transformedNYTimes];
+
+        allArticles.forEach(async (article) => {
             try {
-                let updated = await Article.updateOne({ id: newArticle.id }, newArticle.toObject(), { upsert: true }).exec();
+                let updated = await Article.updateOne({ id: article.id }, article, { upsert: true }).exec();
                 console.log('Article updated successfully!');
             } catch (err) {
                 console.log('Error updating article:', err);
             }
         });
     })
-    .catch((error) => {
-        console.log(error);
+    .catch((errors) => {
+        console.log(errors);
     });
-
-
-
-
-
-
-
