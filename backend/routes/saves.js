@@ -7,8 +7,9 @@ const jwtMiddleWare = require('../middlewares/authMiddleware');
 
 router.post('/save/:articleId', jwtMiddleWare, async (req, res) => {
     const userId = req.user._id;  // Assuming you send the userId in the request body
+    const originalId = decodeURIComponent(req.params.articleId);
     try {
-        const article = await Article.findOne({ id: req.params.articleId });
+        const article = await Article.findOne({ id: originalId });
         console.log('backend article: ' + req.params.articleId);
 
         if (!article) {
@@ -30,8 +31,9 @@ router.post('/save/:articleId', jwtMiddleWare, async (req, res) => {
 
 router.post('/unsave/:articleId', jwtMiddleWare, async (req, res) => {
     const userId = req.user._id;  // Assuming you send the userId in the request body
+    const originalId = decodeURIComponent(req.params.articleId);
     try {
-        const article = await Article.findOne({ id: req.params.articleId });
+        const article = await Article.findOne({ id: originalId });
         console.log('backend article: ' + req.params.articleId);
 
         if (!article) {
@@ -52,7 +54,6 @@ router.post('/unsave/:articleId', jwtMiddleWare, async (req, res) => {
 });
 
 router.get('/saved-articles', jwtMiddleWare, async (req, res) => {
-
     const userId = req.user._id;  // Extract userId from JWT
 
     try {

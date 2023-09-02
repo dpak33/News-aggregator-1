@@ -14,11 +14,13 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
     const [isSaved, setIsSaved] = useState(savedArticles ? savedArticles.includes(article.id) : false);
     const likesCount = article.likesCount !== undefined ? article.likesCount : article.likes.length;
 
+    const encodedId = encodeURIComponent(article.id);
+
     const handleLikeToggle = async () => {
         if (!isLiked) {
             try {
                 console.log("User ID being sent:", userId);
-                await axios.post(`http://localhost:8000/api/likes/like/${article.id}`, { userId },
+                await axios.post(`http://localhost:8000/api/likes/like/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -37,7 +39,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
         }
         else {
             try {
-                await axios.post(`http://localhost:8000/api/likes/unlike/${article.id}`, { userId },
+                await axios.post(`http://localhost:8000/api/likes/unlike/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -55,7 +57,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
     const handleSaveToggle = async () => {
         if (!isSaved) {
             try {
-                await axios.post(`http://localhost:8000/api/saves/save/${article.id}`, { userId },
+                await axios.post(`http://localhost:8000/api/saves/save/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -74,7 +76,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
         }
         else {
             try {
-                await axios.post(`http://localhost:8000/api/saves/unsave/${article.id}`, { userId },
+                await axios.post(`http://localhost:8000/api/saves/unsave/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`

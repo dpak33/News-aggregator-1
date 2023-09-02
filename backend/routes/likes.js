@@ -6,9 +6,10 @@ const jwtMiddleWare = require('../middlewares/authMiddleware');
 
 
 router.post('/like/:articleId', jwtMiddleWare, async (req, res) => {
+    const originalId = decodeURIComponent(req.params.articleId);
     const userId = req.user._id;  // Assuming you send the userId in the request body
     try {
-        const article = await Article.findOne({ id: req.params.articleId });
+        const article = await Article.findOne({ id: originalId });
 
         if (!article) {
             return res.status(404).json({ message: 'Article not found' });
@@ -36,10 +37,11 @@ router.post('/like/:articleId', jwtMiddleWare, async (req, res) => {
 });
 
 router.post('/unlike/:articleId', jwtMiddleWare, async (req, res) => {
+    const originalId = decodeURIComponent(req.params.articleId);
     const userId = req.user._id;  // Assuming you send the userId in the request body
 
     try {
-        const article = await Article.findOne({ id: req.params.articleId });
+        const article = await Article.findOne({ id: originalId });
 
         if (!article) {
             return res.status(404).json({ message: 'Article not found' });
