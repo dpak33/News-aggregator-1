@@ -46,6 +46,25 @@
     transform: translateY(-50%);
 }
 
+.back-arrow-pages a {
+    text-decoration: none;
+    /* Removes underline */
+    color: white;
+    /* Makes the text white */
+    transition: color 0.3s ease;
+    /* Optional: Smooth transition for color changes */
+}
+
+/* Remove styles for visited links */
+.back-arrow-pages a:visited {
+    color: white;
+}
+
+/* Remove styles for active (clicked) links */
+.back-arrow-pages a:active {
+    color: white;
+}
+
 .production-icon {
     right: 3%;
 }
