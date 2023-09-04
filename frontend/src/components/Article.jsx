@@ -34,7 +34,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
                     ? error.response.data.message
                     : "An unexpected error occurred.";
 
-                toast.error(errorMessage);
+                toast.error(`${errorMessage} Login to like!`);
             }
         }
         else {
@@ -71,7 +71,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
                     ? error.response.data.message
                     : "An unexpected error occurred.";
 
-                toast.error(errorMessage);
+                toast.error(`${errorMessage} Login to save!`);
             }
         }
         else {
