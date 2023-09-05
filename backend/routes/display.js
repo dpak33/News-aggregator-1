@@ -5,7 +5,7 @@ const Article = require('../schemas/ArticleSchema');
 
 router.get('/latestArticles', async (req, res) => {
     try {
-        const articles = await Article.find().sort({ published: -1 }).limit(25);
+        const articles = await Article.find().sort({ published: -1 }).limit(30);
         res.json(articles);
     } catch (err) {
         res.status(500).json({ message: err.message });
