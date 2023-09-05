@@ -3,10 +3,13 @@ import axios from 'axios';
 import '../styling/Pages.css';
 import Article from '../components/Article';
 import { Link } from 'react-router-dom';
+import { paginate } from './paginate'; // Make sure this import is correct
 
 const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
 
     const [articles, setArticles] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 20;
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -22,6 +25,8 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
         fetchArticles();
     }, [route]);
 
+    const { totalPages, pageItems } = paginate(articles, pageSize, currentPage);
+
     return (
         <div className="article-container-pages">
             <div className="bg-image"></div>
@@ -34,12 +39,16 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
                 <div></div>
             </div>
             <div className="article-list">
-                {articles.map((article, index) => (
+                {pageItems.map((article, index) => ( // Note the change here
                     <Article key={index} article={article} />
                 ))}
+                <div>
+                    {currentPage > 1 && <button onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>}
+                    {currentPage < totalPages && <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>}
+                </div>
             </div>
         </div >
-    )
+    );
 }
 
 export default ArticleList;
