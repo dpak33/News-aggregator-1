@@ -20,13 +20,15 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div className="icon-wrapper">
-                <i
-                    className="close-icon material-symbols-outlined"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    menu_open
-                </i>
+            <div className="icon-and-dropdown-wrapper">
+                <div className="icon-wrapper">
+                    <i
+                        className="close-icon material-symbols-outlined"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        menu_open
+                    </i>
+                </div>
             </div>
             {isOpen && (
                 <ul className="dropdown">

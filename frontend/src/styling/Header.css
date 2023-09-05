@@ -5,31 +5,31 @@
 
 .header h1 {
     font-size: 4.5em;
-    /* Adjust this value as needed */
+}
+
+.icon-and-dropdown-wrapper {
+    position: absolute;
+    left: 40px;
+    top: 40%;
 }
 
 .icon-wrapper {
     position: absolute;
-    left: 40px;
-    top: 40%;
-    /* Increase this value to move the icon down */
+    z-index: 2;
+    /* No need for left and top here, as it's inside icon-and-dropdown-wrapper */
     transform: scale(3.5);
-    /* This will visually scale the icon */
     cursor: pointer;
 }
 
 .close-icon {
     position: relative;
-    /* Positioned relative to the wrapper */
     font-size: 1em;
-    /* Set the actual font size back to 1em */
 }
 
 .production-icon {
     position: absolute;
     right: 25px;
     top: 50%;
-    /* Adjusted from 50% to 40% to raise the icon */
     transform: translateY(-50%);
     padding: 10px;
     font-size: 2em;
@@ -38,22 +38,17 @@
 
 .dropdown {
     position: absolute;
-    left: 80px;
-    /* Adjust as needed */
-    top: -10%;
-    /* Decrease this value to move the dropdown list up */
+    z-index: 1;
+    left: 20px;
+    top: -20%;
     width: 200px;
-    /* Adjust as needed */
     list-style-type: none;
 }
 
 .dropdown li {
     padding: 0;
-    /* Remove padding */
     margin: 0;
-    /* Remove margin */
     color: #fff;
-    /* White text color */
 }
 
 .dropdown li a {
@@ -63,5 +58,4 @@
 
 .dropdown li:hover {
     color: #fff;
-    /* Keeps the text color white on hover */
 }
