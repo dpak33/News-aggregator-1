@@ -14,14 +14,6 @@ router.get('/latestArticles', async (req, res) => {
 
 module.exports = router;
 
-router.get('/latestArticlespage', async (req, res) => {
-    try {
-        const articles = await Article.find().sort({ published: -1 }).limit(30);
-        res.json(articles);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
 
 module.exports = router;
 
