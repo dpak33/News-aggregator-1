@@ -5,7 +5,31 @@ const Article = require('../schemas/ArticleSchema');
 
 router.get('/latestArticles', async (req, res) => {
     try {
-        const articles = await Article.find().sort({ published: -1 }).limit(30);
+        const articles = await Article.aggregate([
+            { $sort: { published: -1 } },
+            { $limit: 30 },
+            {
+                $project: {
+                    id: 1,
+                    title: 1,
+                    description: 1,
+                    image: 1,
+                    url: 1,
+                    author: 1,
+                    language: 1,
+                    category: 1,
+                    published: 1,
+                    likesCount: {
+                        $cond: [
+                            { $isArray: "$likes" },
+                            { $size: "$likes" },
+                            0
+                        ]
+                    }, likes: 1,
+                }
+            },
+        ]);
+
         res.json(articles);
     } catch (err) {
         console.error(err);
@@ -28,7 +52,7 @@ router.get('/mostPopularArticles', async (req, res) => {
     try {
         const articles = await Article.aggregate([
             { $sort: { likes: -1 } },
-            { $limit: 80 },
+            { $limit: 60 },
             {
                 $project: {
                     id: 1,
