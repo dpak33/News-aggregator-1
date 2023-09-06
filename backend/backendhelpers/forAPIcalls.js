@@ -1,7 +1,7 @@
 const axios = require('axios');
 const Article = require('../schemas/ArticleSchema');
 const User = require('../schemas/UserSchema');
-const transformations = require('transformations');
+const transformations = require('./transformations');
 const { transformCurrentsArticle, transformGuardianArticle, transformNYTimesArticle } = transformations;
 
 const fetchArticles = async () => {

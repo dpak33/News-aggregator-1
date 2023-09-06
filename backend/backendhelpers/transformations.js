@@ -1,13 +1,18 @@
 const transformGuardianArticle = (guardianArticle) => {
+    if (!guardianArticle || !guardianArticle.fields) {
+        console.error("Invalid article data:", guardianArticle);
+        return null;
+    }
+
     return {
-        id: guardianArticle.id,
-        title: guardianArticle.fields.headline,
-        description: guardianArticle.fields.byline,
-        url: guardianArticle.webUrl,
-        author: guardianArticle.fields.byline,
-        image: guardianArticle.fields.thumbnail,
+        id: guardianArticle.id || "",
+        title: guardianArticle.fields.headline || "",
+        description: guardianArticle.fields.byline || "",
+        url: guardianArticle.webUrl || "",
+        author: guardianArticle.fields.byline || "",
+        image: guardianArticle.fields.thumbnail || "",
         language: 'en',
-        category: guardianArticle.sectionName,
+        category: guardianArticle.sectionName || "",
         published: new Date(guardianArticle.webPublicationDate)
     };
 };

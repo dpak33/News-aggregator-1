@@ -52,7 +52,7 @@ router.get('/mostPopularArticles', async (req, res) => {
     try {
         const articles = await Article.aggregate([
             { $sort: { likes: -1 } },
-            { $limit: 60 },
+            { $limit: 50 },
             {
                 $project: {
                     id: 1,
