@@ -44,4 +44,6 @@ const ArticleSchema = new mongoose.Schema({
     }]
 });
 
+ArticleSchema.index({ published: -1 });
+
 module.exports = mongoose.model('Article', ArticleSchema);

@@ -8,29 +8,27 @@ router.get('/latestArticles', async (req, res) => {
         const articles = await Article.find().sort({ published: -1 }).limit(30);
         res.json(articles);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error(err);
+        res.status(500).json({ message: err });
     }
 });
 
-module.exports = router;
-
-
-module.exports = router;
 
 router.get('/allArticles', async (req, res) => {
     try {
-        const articles = await Article.find().sort({ published: -1 });
+        const articles = await Article.find().sort({ published: -1 }).limit(80);
         res.json(articles);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-module.exports = router;
 
-router.get('/mostpopularArticles', async (req, res) => {
+router.get('/mostPopularArticles', async (req, res) => {
     try {
         const articles = await Article.aggregate([
+            { $sort: { likes: -1 } },
+            { $limit: 80 },
             {
                 $project: {
                     id: 1,
@@ -51,8 +49,6 @@ router.get('/mostpopularArticles', async (req, res) => {
                     }, likes: 1,
                 }
             },
-            { $sort: { likesCount: -1 } },
-            { $limit: 40 }
         ]);
 
         res.json(articles);
