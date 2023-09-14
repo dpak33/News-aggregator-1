@@ -12,7 +12,9 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
 
     const [isLiked, setIsLiked] = useState(article && article.likes ? article.likes.includes(userId) : false); // Local state to track if an article is liked
     const [isSaved, setIsSaved] = useState(savedArticles ? savedArticles.includes(article.id) : false);
+
     const likesCount = article.likesCount !== undefined ? article.likesCount : article.likes.length;
+    const [currentLikesCount, setCurrentLikesCount] = useState(likesCount);
 
     const encodedId = encodeURIComponent(article.id);
 
@@ -28,6 +30,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
                     });
                 setIsLiked(true);
                 likeArticle(article.id);  // Update the Redux store
+                setCurrentLikesCount(prevCount => prevCount + 1);
             } catch (error) {
                 console.error("Error liking the article:", error);
                 let errorMessage = error.response && error.response.data && error.response.data.message
@@ -48,6 +51,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
                 );
                 setIsLiked(false);
                 unlikeArticle(article.id);
+                setCurrentLikesCount(prevCount => prevCount - 1);
             } catch (error) {
                 console.error("Error unliking the article:", error);
             }
@@ -108,7 +112,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
                     <a href={article.url} target="_blank" className="a" rel="noopener noreferrer">Read more</a>
                     <button onClick={handleLikeToggle}>{isLiked ? "Unlike" : "Like"}</button>
                     <div className="article-likes-container">
-                        <span className="article-likes">{likesCount}</span>
+                        <span className="article-likes">{currentLikesCount}</span>
                         <span> likes</span>
                     </div>
                     <button onClick={handleSaveToggle}>{isSaved ? "Unsave" : "Save"}</button>

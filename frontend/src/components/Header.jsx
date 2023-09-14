@@ -34,7 +34,7 @@ const Header = () => {
                 <ul className="dropdown">
                     {isUserLoggedIn() ? (
                         <li onClick={logoutUser}>
-                            <Link to="#">Logout</Link> {/* You can replace this with a button or any other element */}
+                            <Link to="#">Logout</Link>
                         </li>
                     ) : (
                         <li>
