@@ -40,6 +40,9 @@ const userReducer = (state = initialState, action) => {
             }
             return state;
 
+        case 'CLEAR_USER_INFO':
+            return initialState;
+
         default:
             return state;
     }

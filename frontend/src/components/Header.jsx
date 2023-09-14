@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
 import '../styling/Header.css';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { clearUserInfo } from '../store/actions/userActions';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const isUserLoggedIn = () => {
@@ -14,6 +17,7 @@ const Header = () => {
 
     const logoutUser = () => {
         localStorage.removeItem('user');
+        dispatch(clearUserInfo());
         toast.success('User logged out');
         navigate("/");
     };

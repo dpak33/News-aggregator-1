@@ -8,6 +8,12 @@ export const setUserInfo = (userInfo) => ({
     payload: userInfo
 });
 
+export const clearUserInfo = () => {
+    return {
+        type: 'CLEAR_USER_INFO'
+    }
+};
+
 export const likeArticle = (articleId) => ({
     type: 'LIKE_ARTICLE',
     payload: articleId

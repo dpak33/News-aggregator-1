@@ -4,7 +4,7 @@ import '../styling/Pages.css';
 import Article from '../components/Article';
 import { Link } from 'react-router-dom';
 
-const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
+const ArticleList = ({ route, pageTitle, fetchConfig = {}, userId }) => {
 
     const [articles, setArticles] = useState([]);
 
@@ -12,16 +12,18 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get(route, fetchConfig);
-                console.log(res.data);
-                setArticles(res.data);
+                if (!userId || userId) {
+                    const res = await axios.get(route, fetchConfig);
+                    console.log(res.data);
+                    setArticles(res.data);
+                }
             }
             catch (err) {
                 console.error(err);
             }
         };
         fetchArticles();
-    }, [route]);
+    }, [route, userId]);
 
 
     return (
