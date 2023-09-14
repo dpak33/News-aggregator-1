@@ -24,7 +24,6 @@ const YourSaved = ({ userId }) => {
         route="http://localhost:8000/api/saves/saved-articles"
         pageTitle="Your saved"
         fetchConfig={fetchConfig}
-        userId={userId}
     />;
 }
 

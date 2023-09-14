@@ -4,15 +4,16 @@ import '../styling/Pages.css';
 import Article from '../components/Article';
 import { Link } from 'react-router-dom';
 
-const ArticleList = ({ route, pageTitle, fetchConfig = {}, userId }) => {
+const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
 
     const [articles, setArticles] = useState([]);
 
+    const userId = fetchConfig.params && fetchConfig.params.userId;
 
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                if (!userId || userId) {
+                if (!userId || (userId && userId.length > 0)) {
                     const res = await axios.get(route, fetchConfig);
                     console.log(res.data);
                     setArticles(res.data);
