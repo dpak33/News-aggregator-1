@@ -13,7 +13,7 @@ const transformGuardianArticle = (guardianArticle) => {
         image: guardianArticle.fields.thumbnail || "",
         language: 'en',
         category: guardianArticle.sectionName || "",
-        published: new Date(guardianArticle.webPublicationDate + 'Z')
+        published: new Date(guardianArticle.webPublicationDate)
     };
 };
 
@@ -43,7 +43,7 @@ const transformCurrentsArticle = (currentsArticle) => {
         return null;
     }
 
-    //console.log("published currentsAPI date: " + currentsArticle.published_date);
+    console.log("published currentsAPI date: " + currentsArticle.published_date);
     //console.log('Currents Article structure:', JSON.stringify(currentsArticle, null, 2));
     return {
         id: currentsArticle.id || "",
