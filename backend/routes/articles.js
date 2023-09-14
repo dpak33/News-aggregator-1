@@ -10,6 +10,7 @@ const router = express.Router();
 const fetchDataAndCleanUp = async () => {
     try {
         const fetchedArticles = await fetchArticles();
+        console.log(fetchedArticles);
         await transformAndSaveArticles(fetchedArticles);
 
         const articlesToPreserve = await fetchSavedAndLikedArticles();
