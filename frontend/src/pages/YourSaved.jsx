@@ -9,6 +9,17 @@ const YourSaved = ({ userId }) => {
         params: { userId }
     };
 
+    if (!userId) {
+        return <h1 style={{
+            fontSize: '4em',
+            textAlign: 'center',
+            marginTop: '50vh',
+            transform: 'translateY(-50%)' // Centers the text vertically
+        }}>
+            Login to see your saved articles!
+        </h1>;
+    }
+
     return <ArticleList
         route="http://localhost:8000/api/saves/saved-articles"
         pageTitle="Your saved"
