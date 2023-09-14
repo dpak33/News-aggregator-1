@@ -24,7 +24,7 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
             }
         };
         fetchArticles();
-    }, [route, userId]);
+    }, [route, userId, fetchConfig]);
 
 
     return (
