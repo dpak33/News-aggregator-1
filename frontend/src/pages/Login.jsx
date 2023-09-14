@@ -46,7 +46,11 @@ const Login = (props) => {
         <div className="login">
 
             <div className="login-container">
-                <div className="back-arrow">Return home</div>
+                <div className="top-section">
+                    <div className="back-arrow">
+                        <Link to="/">Return home</Link>
+                    </div>
+                </div>
                 <h1 className="login-title">Login</h1>
 
                 <input

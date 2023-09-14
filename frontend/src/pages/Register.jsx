@@ -35,7 +35,11 @@ const Register = () => {
     return (
         <div className="register">
             <div className="register-container">
-                <div className="back-arrow">Return home</div>
+                <div className="top-section">
+                    <div className="back-arrow">
+                        <Link to="/">Return home</Link>
+                    </div>
+                </div>
                 <h1 className="register-title">Registration</h1>
                 <div className="register-input-fields">
                     <input

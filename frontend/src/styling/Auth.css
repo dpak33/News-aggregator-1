@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     height: 100vh;
+    padding-top: 50px;
     padding-left: 90px;
     background: linear-gradient(to top right, black 70%, white 30%);
 }
@@ -22,6 +23,17 @@
     flex-direction: column;
     gap: 30px;
     /* 1.5x of 20px */
+}
+
+.top-section {
+    display: flex;
+    justify-content: flex-start;
+    /* align horizontally to the left */
+    align-items: flex-start;
+    /* align vertically to the top */
+    width: 100%;
+    padding: 0 2%;
+    position: relative;
 }
 
 .register-title,
@@ -103,4 +115,28 @@
 
 .back-arrow {
     font-size: 2.5em;
+    cursor: pointer;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.back-arrow a {
+    text-decoration: none;
+    /* Removes underline */
+    color: white;
+    /* Makes the text white */
+    transition: color 0.3s ease;
+    /* Optional: Smooth transition for color changes */
+}
+
+/* Remove styles for visited links */
+.back-arrow a:visited {
+    color: white;
+}
+
+/* Remove styles for active (clicked) links */
+.back-arrow a:active {
+    color: white;
 }

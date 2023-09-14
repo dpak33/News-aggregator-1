@@ -62,17 +62,5 @@ const deleteOldArticles = async (articlesToPreserve) => {
     console.log('Old articles cleaned up');
 };
 
-const fetchDataAndCleanUp = async () => {
-    try {
-        const fetchedArticles = await fetchArticles();
-        await transformAndSaveArticles(fetchedArticles);
-
-        const articlesToPreserve = await fetchSavedAndLikedArticles();
-        await deleteOldArticles(articlesToPreserve);
-
-    } catch (errors) {
-        console.log(errors);
-    }
-};
 
 module.exports = { fetchArticles, transformAndSaveArticles, fetchSavedAndLikedArticles, deleteOldArticles };

@@ -1,4 +1,5 @@
 import './App.css';
+import ProtectedRoute from './helpers/ProtectedRoute';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
