@@ -131,4 +131,36 @@ describe('transformAndSaveArticles', () => {
         expect(transformCurrentsArticle).toHaveBeenCalledTimes(2);
     });
 
+    it('should upsert articles into the database', async () => {
+        const mockArticles = [
+            { source: 'currents', title: 'sampleCurrentsTitle' },
+            { section: 'nytimes', title: 'sampleNYTimesTitle' },
+            { webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' },
+            { source: 'currents', title: 'sampleCurrentsTitle2' }
+        ];
+
+        // Mock database interaction
+        const mockUpdateOne = jest.fn();
+        Article.updateOne = mockUpdateOne;
+
+        await transformAndSaveArticles(mockArticles);
+
+        expect(mockUpdateOne).toHaveBeenCalledTimes(4); // Since there are 4 articles
+        // Optionally, you can add more expects to check if it's called with the right arguments.
+    });
+
+    it('should log an error if there is an issue updating an article', async () => {
+        const mockArticles = [{ source: 'currents', title: 'sampleCurrentsTitle' }];
+
+        // Mock database interaction to throw an error
+        Article.updateOne = jest.fn(() => { throw new Error('Mock DB Error') });
+
+        // Mock console.log for assertion
+        global.console.log = jest.fn();
+
+        await transformAndSaveArticles(mockArticles);
+
+        expect(console.log).toHaveBeenCalledWith('Error updating article:', new Error('Mock DB Error'));
+    });
+
 })
