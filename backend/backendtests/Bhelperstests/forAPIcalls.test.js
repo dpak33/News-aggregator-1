@@ -1,8 +1,23 @@
 const { fetchArticles, transformAndSaveArticles, fetchSavedAndLikedArticles, deleteOldArticles } = require('../../backendhelpers/forAPIcalls');
+const { transformCurrentsArticle, transformGuardianArticle, transformNYTimesArticle } = require('../../backendhelpers/transformations');
 const axios = require('axios');
+const Article = require('../../schemas/ArticleSchema');
 jest.mock('axios');
+jest.mock('../../schemas/ArticleSchema');
+jest.mock('../../backendhelpers/transformations');
 
+
+Article.updateOne = jest.fn();
 axios.get.mockResolvedValue({ data: { news: [], results: [], response: { results: [] } } });
+
+beforeEach(() => {
+    Article.updateOne.mockReset();
+});
+
+transformCurrentsArticle.mockReturnValue({ source: 'currents', title: 'transformedCurrentsTitle' });
+transformGuardianArticle.mockReturnValue({ source: 'guardian', title: 'transformedGuardianTitle' });
+transformNYTimesArticle.mockReturnValue({ source: 'nytimes', title: 'transformedNYTimesTitle' });
+
 
 describe('fetchArticles', () => {
     it('should fetch articles from APIs without errors', async () => {
@@ -97,3 +112,23 @@ describe('fetchArticles', () => {
 
 });
 
+describe('transformAndSaveArticles', () => {
+
+    it('should correctly transform articles based on their source', async () => {
+        const mockArticles = [
+            { source: 'currents', title: 'sampleCurrentsTitle' },
+            { section: 'nytimes', title: 'sampleNYTimesTitle' },
+            { webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' },
+            { source: 'currents', title: 'sampleCurrentsTitle2' }, // Added another currents article for the example
+        ];
+
+        await transformAndSaveArticles(mockArticles);
+
+        // Expect transform functions to be called the correct number of times
+
+        expect(transformGuardianArticle).toHaveBeenCalledTimes(1);
+        expect(transformNYTimesArticle).toHaveBeenCalledTimes(1);
+        expect(transformCurrentsArticle).toHaveBeenCalledTimes(2);
+    });
+
+})
