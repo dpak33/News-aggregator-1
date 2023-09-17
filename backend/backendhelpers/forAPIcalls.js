@@ -6,12 +6,18 @@ const { transformCurrentsArticle, transformNYTimesArticle, transformGuardianArti
 
 const fetchArticles = async () => {
     console.log('Fetching articles from APIs...')
+    let currentsAPI, nyTimesAPI, guardianAPI;
 
-    const [currentsAPI, nyTimesAPI, guardianAPI] = await Promise.all([
-        axios.get(`https://api.currentsapi.services/v1/latest-news?apiKey=${process.env.CURRENTS_API_KEY}`),
-        axios.get(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=${process.env.NYTIMES_API_KEY}`),
-        axios.get(`https://content.guardianapis.com/search?order-by=newest&show-fields=byline%2Cthumbnail%2Cheadline%2CbodyText&api-key=${process.env.GUARDIAN_API_KEY}`)
-    ]);
+    try {
+        [currentsAPI, nyTimesAPI, guardianAPI] = await Promise.all([
+            axios.get(`https://api.currentsapi.services/v1/latest-news?apiKey=${process.env.CURRENTS_API_KEY}`),
+            axios.get(`https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=${process.env.NYTIMES_API_KEY}`),
+            axios.get(`https://content.guardianapis.com/search?order-by=newest&show-fields=byline%2Cthumbnail%2Cheadline%2CbodyText&api-key=${process.env.GUARDIAN_API_KEY}`)
+        ]);
+    } catch (err) {
+        console.log('Error fetching articles:', err);
+        throw err; // or return [] if you prefer not to throw an error.
+    }
 
     console.log('Successfully fetched from APIs.')
 
@@ -21,6 +27,7 @@ const fetchArticles = async () => {
         ...guardianAPI.data.response.results.slice(0, 100)
     ];
 };
+
 
 const transformAndSaveArticles = async (articles) => {
     console.log('Transforming saved articles.')
