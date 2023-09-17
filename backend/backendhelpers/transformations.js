@@ -1,9 +1,12 @@
+const transformDate = require('./transformDate');
+const { reformatDate } = transformDate;
+
 const transformGuardianArticle = (guardianArticle) => {
     if (!guardianArticle || !guardianArticle.fields) {
         console.error("Invalid article data:", guardianArticle);
         return null;
     }
-    console.log("published guardian date: " + guardianArticle.webPublicationDate);
+    //console.log("published guardian date: " + guardianArticle.webPublicationDate);
     return {
         id: guardianArticle.id || "",
         title: guardianArticle.fields.headline || "",
@@ -18,12 +21,14 @@ const transformGuardianArticle = (guardianArticle) => {
 };
 
 const transformNYTimesArticle = (nyArticle) => {
+
     if (!nyArticle) {
         console.error("Invalid article data:", nyArticle);
         return null;
     }
 
-    console.log("published NY date: " + nyArticle.published_date);
+    //console.log(JSON.stringify(nyArticle, null, 2));
+    //console.log("published NY date: " + nyArticle.published_date);
     return {
         id: nyArticle.uri || "",
         title: nyArticle.title || "",
@@ -42,9 +47,9 @@ const transformCurrentsArticle = (currentsArticle) => {
         console.error("Invalid article data:", currentsArticle);
         return null;
     }
-
-    console.log("published currentsAPI date: " + currentsArticle.published_date);
-    //console.log('Currents Article structure:', JSON.stringify(currentsArticle, null, 2));
+    //console.log(JSON.stringify(currentsArticle, null, 2));
+    //RIGHT HERE NOW: console.log("published currentsAPI date: " + currentsArticle.published);
+    //console.log("published currentsAPI url: " + currentsArticle.url);
     return {
         id: currentsArticle.id || "",
         title: currentsArticle.title || "",
@@ -54,7 +59,7 @@ const transformCurrentsArticle = (currentsArticle) => {
         image: currentsArticle.image || "",
         language: currentsArticle.language || "",
         category: currentsArticle.category || "",
-        published: new Date(currentsArticle.published_date)
+        published: new Date(reformatDate(currentsArticle.published))
     };
 };
 

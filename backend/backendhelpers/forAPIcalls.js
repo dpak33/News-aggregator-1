@@ -20,26 +20,38 @@ const fetchArticles = async () => {
     }
 
     console.log('Successfully fetched from APIs.')
-
-    return [
-        ...currentsAPI.data.news.slice(0, 100),
-        ...nyTimesAPI.data.results.slice(0, 100),
-        ...guardianAPI.data.response.results.slice(0, 100)
-    ];
+    //console.log('currentsAPI Response:', JSON.stringify(currentsAPI.data, null, 2));
+    return {
+        currentsAPI: currentsAPI.data.news.slice(0, 20),
+        nyTimesAPI: nyTimesAPI.data.results.slice(0, 20),
+        guardianAPI: guardianAPI.data.response.results.slice(0, 20)
+    };
 };
 
 
 const transformAndSaveArticles = async (articles) => {
     console.log('Transforming saved articles.')
+    //console.log('articles currentsAPI' + JSON.stringify(articles.currentsAPI, null, 2));
+    // Split the articles object into separate arrays
 
-    const transformedCurrents = articles.filter(article => article.source).map(transformCurrentsArticle);
-    const transformedNYTimes = articles.filter(article => article.section).map(transformNYTimesArticle);
-    const transformedGuardian = articles.filter(article => article.webPublicationDate).map(transformGuardianArticle); // Filtering by a field specific to the Guardian API response
+    //AT THIS POINT STILL CORRECT BEFORE HERE
+    const currentsArticles = articles.currentsAPI || [];
+    const nyTimesArticles = articles.nyTimesAPI || [];
+    const guardianArticles = articles.guardianAPI || [];
 
+    //This is where you feed in the currentsArticles to your function
+    //console.log(currentsArticles);
+    // Transform the articles
+    const transformedCurrents = currentsArticles.map(transformCurrentsArticle);
+    const transformedNYTimes = nyTimesArticles.map(transformNYTimesArticle);
+    const transformedGuardian = guardianArticles.map(transformGuardianArticle);
+
+    //console.log(transformedCurrents);
+    // Combine all transformed articles
     const allArticles = [...transformedCurrents, ...transformedNYTimes, ...transformedGuardian];
 
-    console.log('Articles transformed')
 
+    console.log('Articles transformed');
     for (const article of allArticles) {
         try {
             await Article.updateOne({ id: article.id }, article, { upsert: true });
