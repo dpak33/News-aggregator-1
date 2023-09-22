@@ -23,9 +23,10 @@ describe('fetchArticles', () => {
     it('should fetch articles from APIs without errors', async () => {
         const articles = await fetchArticles();
 
-        // Here, you're just checking if the function runs without errors and returns an array.
-        // You can add more assertions as needed.
-        expect(Array.isArray(articles)).toBe(true);
+        expect(typeof articles).toBe('object');
+        expect(articles).toHaveProperty('currentsAPI');
+        expect(articles).toHaveProperty('nyTimesAPI');
+        expect(articles).toHaveProperty('guardianAPI');
         expect(axios.get).toHaveBeenCalledTimes(3);
     });
 
@@ -70,8 +71,9 @@ describe('fetchArticles', () => {
         const articles = await fetchArticles();
 
         // Check if all articles are in the response
-        expect(articles).toEqual(expect.arrayContaining(['currentsArticle1', 'nyTimesArticle1', 'guardianArticle1']));
-        expect(articles).toEqual(expect.arrayContaining(['currentsArticle2', 'nyTimesArticle2', 'guardianArticle2']));
+        expect(articles.currentsAPI).toEqual(expect.arrayContaining(['currentsArticle1', 'currentsArticle2']));
+        expect(articles.nyTimesAPI).toEqual(expect.arrayContaining(['nyTimesArticle1', 'nyTimesArticle2']));
+        expect(articles.guardianAPI).toEqual(expect.arrayContaining(['guardianArticle1', 'guardianArticle2']));
 
     });
 
@@ -106,26 +108,31 @@ describe('fetchArticles', () => {
         });
 
         const articles = await fetchArticles();
-        expect(articles.length).toBe(6);
 
-    })
+        expect(Array.isArray(articles.currentsAPI)).toBe(true);
+        expect(articles.currentsAPI.length).toBe(2);
+
+        expect(Array.isArray(articles.nyTimesAPI)).toBe(true);
+        expect(articles.nyTimesAPI.length).toBe(2);
+
+        expect(Array.isArray(articles.guardianAPI)).toBe(true);
+        expect(articles.guardianAPI.length).toBe(2);
+    });
 
 });
 
 describe('transformAndSaveArticles', () => {
 
     it('should correctly transform articles based on their source', async () => {
-        const mockArticles = [
-            { source: 'currents', title: 'sampleCurrentsTitle' },
-            { section: 'nytimes', title: 'sampleNYTimesTitle' },
-            { webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' },
-            { source: 'currents', title: 'sampleCurrentsTitle2' }, // Added another currents article for the example
-        ];
+        const mockArticles = {
+            currentsAPI: [{ source: 'currents', title: 'sampleCurrentsTitle' }, { source: 'currents', title: 'sampleCurrentsTitle2' }],
+            nyTimesAPI: [{ section: 'nytimes', title: 'sampleNYTimesTitle' }],
+            guardianAPI: [{ webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' }]
+        };
 
         await transformAndSaveArticles(mockArticles);
 
         // Expect transform functions to be called the correct number of times
-
         expect(transformGuardianArticle).toHaveBeenCalledTimes(1);
         expect(transformNYTimesArticle).toHaveBeenCalledTimes(1);
         expect(transformCurrentsArticle).toHaveBeenCalledTimes(2);
