@@ -2,6 +2,7 @@ const { fetchArticles, transformAndSaveArticles, fetchSavedAndLikedArticles, del
 const { transformCurrentsArticle, transformGuardianArticle, transformNYTimesArticle } = require('../../backendhelpers/transformations');
 const axios = require('axios');
 const Article = require('../../schemas/ArticleSchema');
+const User = require('../../schemas/UserSchema');
 jest.mock('axios');
 jest.mock('../../schemas/ArticleSchema');
 jest.mock('../../backendhelpers/transformations');
@@ -177,4 +178,89 @@ describe('transformAndSaveArticles', () => {
         expect(console.log).toHaveBeenCalledWith('Error updating article:', new Error('Mock DB Error'));
     });
 
+})
+
+describe('fetchSavedAndLikedArticles', () => {
+
+    it('should return unique article IDs from liked and saved articles', async () => {
+
+        // 4. Mocking User.find
+        const mockUsers = [
+            { likedArticles: ['1', '2'], savedArticles: ['3'] },
+            { likedArticles: ['2'], savedArticles: ['4', '5'] }
+        ];
+        User.find = jest.fn().mockResolvedValue(mockUsers);
+
+        // 5. Calling the function
+        const result = await fetchSavedAndLikedArticles();
+
+        // 6. Making assertions
+        expect(result).toEqual(expect.arrayContaining(['1', '2', '3', '4', '5']));
+        expect(result.length).toBe(5); // Ensuring uniqueness
+    });
+
+    it('should return an empty array if no users found', async () => {
+        const mockUsers = [];
+        User.find = jest.fn().mockResolvedValue(mockUsers);
+
+        // 5. Calling the function
+        const result = await fetchSavedAndLikedArticles();
+
+        // 6. Making assertions
+        expect(result).toEqual(expect.arrayContaining([]));
+        expect(result.length).toBe(0); // Ensuring uniqueness
+    })
+
+    it('should return articles IDs from users who have liked and saved articles and ignore users with no articles', async () => {
+        const mockUsers = [
+            { likedArticles: ['1', '2'], savedArticles: ['3'] },
+            { likedArticles: [], savedArticles: [] } // A user with no liked or saved articles
+        ];
+        User.find = jest.fn().mockResolvedValue(mockUsers);
+
+        const result = await fetchSavedAndLikedArticles();
+
+        expect(result).toEqual(expect.arrayContaining(['1', '2', '3']));
+        expect(result.length).toBe(3);
+    });
+})
+
+describe('delete old Articles', () => {
+
+    it('should delete old articles not in the preserve list', async () => {
+        const mockDeleteMany = jest.fn();
+        Article.deleteMany = mockDeleteMany;
+        global.console.log = jest.fn();
+
+        await deleteOldArticles(['1', '2']);
+
+        // Asserting whether deleteMany was called with the correct arguments
+        expect(mockDeleteMany).toHaveBeenCalledWith({
+            "createdAt": { "$lt": expect.any(Date) },
+            "id": { "$nin": ['1', '2'] }
+        });
+        expect(console.log).toHaveBeenCalledWith('Old articles cleaned up');
+    });
+
+    it('should not delete any articles if none meet the deletion criteria', async () => {
+        const mockDeleteMany = jest.fn();
+        Article.deleteMany = mockDeleteMany;
+        global.console.log = jest.fn();
+
+        await deleteOldArticles(['1', '2']);
+
+        // Verifying deleteMany is called which implies that it didn’t find any articles to delete
+        expect(mockDeleteMany).toHaveBeenCalled();
+    });
+
+    it('should not delete any articles if all are in the preserve list', async () => {
+        const mockDeleteMany = jest.fn();
+        Article.deleteMany = mockDeleteMany;
+        global.console.log = jest.fn();
+
+        await deleteOldArticles(['1', '2', '3', '4', '5']); // Assuming 1,2,3,4,5 are the IDs of all the old articles
+
+        // Verifying deleteMany is called which implies that it didn’t find any articles to delete not in the preserve list
+        expect(mockDeleteMany).toHaveBeenCalled();
+    });
 })

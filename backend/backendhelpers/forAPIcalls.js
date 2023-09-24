@@ -31,16 +31,12 @@ const fetchArticles = async () => {
 
 const transformAndSaveArticles = async (articles) => {
     console.log('Transforming saved articles.')
-    //console.log('articles currentsAPI' + JSON.stringify(articles.currentsAPI, null, 2));
-    // Split the articles object into separate arrays
 
-    //AT THIS POINT STILL CORRECT BEFORE HERE
+
     const currentsArticles = articles.currentsAPI || [];
     const nyTimesArticles = articles.nyTimesAPI || [];
     const guardianArticles = articles.guardianAPI || [];
 
-    //This is where you feed in the currentsArticles to your function
-    //console.log(currentsArticles);
     // Transform the articles
     const transformedCurrents = currentsArticles.map(transformCurrentsArticle);
     const transformedNYTimes = nyTimesArticles.map(transformNYTimesArticle);
