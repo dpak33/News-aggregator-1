@@ -139,12 +139,18 @@ describe('transformAndSaveArticles', () => {
     });
 
     it('should upsert articles into the database', async () => {
-        const mockArticles = [
-            { source: 'currents', title: 'sampleCurrentsTitle' },
-            { section: 'nytimes', title: 'sampleNYTimesTitle' },
-            { webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' },
-            { source: 'currents', title: 'sampleCurrentsTitle2' }
-        ];
+        const mockArticles = {
+            currentsAPI: [
+                { source: 'currents', title: 'sampleCurrentsTitle' },
+                { source: 'currents', title: 'sampleCurrentsTitle2' }
+            ],
+            nyTimesAPI: [
+                { section: 'nytimes', title: 'sampleNYTimesTitle' },
+            ],
+            guardianAPI: [
+                { webPublicationDate: '2023-09-12T00:00:00Z', title: 'sampleGuardianTitle' },
+            ]
+        };
 
         // Mock database interaction
         const mockUpdateOne = jest.fn();
@@ -152,12 +158,13 @@ describe('transformAndSaveArticles', () => {
 
         await transformAndSaveArticles(mockArticles);
 
-        expect(mockUpdateOne).toHaveBeenCalledTimes(4); // Since there are 4 articles
-        // Optionally, you can add more expects to check if it's called with the right arguments.
+        expect(mockUpdateOne).toHaveBeenCalledTimes(4);
     });
 
     it('should log an error if there is an issue updating an article', async () => {
-        const mockArticles = [{ source: 'currents', title: 'sampleCurrentsTitle' }];
+        const mockArticles = {
+            currentsAPI: [{ source: 'currents', title: 'sampleCurrentsTitle' }]
+        };
 
         // Mock database interaction to throw an error
         Article.updateOne = jest.fn(() => { throw new Error('Mock DB Error') });
