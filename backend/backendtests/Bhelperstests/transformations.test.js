@@ -1,6 +1,7 @@
 const { transformCurrentsArticle, transformNYTimesArticle, transformGuardianArticle } = require('../../backendhelpers/transformations');
+const transformDate = require('../../backendhelpers/transformDate');
 global.console.error = jest.fn();
-
+jest.mock('../../backendhelpers/transformDate');
 
 describe('transform Guardian articles', () => {
 
@@ -76,3 +77,42 @@ describe('transform NY times articles', () => {
     });
 })
 
+describe('transform currents article', () => {
+    it('should return null and log error for invalid currentsArticle', () => {
+        const result = transformCurrentsArticle(null);
+        expect(result).toBeNull();
+        expect(console.error).toHaveBeenCalledWith("Invalid article data:", null);
+    });
+
+    it('should transform valid currentsArticle correctly', () => {
+        const mockArticle = {
+            id: "someId",
+            title: "someTitle",
+            description: "someDescription",
+            url: "someUrl",
+            author: "someAuthor",
+            image: "someImage",
+            language: "en",
+            category: "someCategory",
+            published: "2023-09-20T12:00:00Z"
+        };
+
+        // Mock the reformatDate to return the same string it receives
+        transformDate.reformatDate.mockImplementation(date => date);
+
+        const expected = {
+            id: "someId",
+            title: "someTitle",
+            description: "someDescription",
+            url: "someUrl",
+            author: "someAuthor",
+            image: "someImage",
+            language: "en",
+            category: "someCategory",
+            published: new Date("2023-09-20T12:00:00Z")
+        };
+
+        const result = transformCurrentsArticle(mockArticle);
+        expect(result).toEqual(expected);
+    });
+})
