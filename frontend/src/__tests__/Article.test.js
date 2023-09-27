@@ -56,6 +56,33 @@ describe('Article Component', () => {
         expect(getByText('Save')).toBeInTheDocument();
     });
 
+    it('has the correct href attribute for "Read more"', () => {
+        const { getByText } = render(
+            <Provider store={store}>
+                <Article article={article} />
+            </Provider>
+        );
+
+        // Check if the "Read more" anchor tag has the correct href attribute
+        expect(getByText('Read more').closest('a')).toHaveAttribute('href', article.url);
+    });
+
+    it('handles axios call failure correctly for liking an article', async () => {
+        axios.post.mockRejectedValue(new Error('An error occurred'));
+
+        const { getByText } = render(
+            <Provider store={store}>
+                <Article article={article} />
+            </Provider>
+        );
+
+        fireEvent.click(getByText('Like'));
+
+        await waitFor(() => {
+            "An unexpected error occurred."
+        });
+    });
+
     it('renders correctly and likes/unlikes article', async () => {
         const { getByText, getByRole } = render(
             <Provider store={store}>
