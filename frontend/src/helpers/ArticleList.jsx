@@ -13,7 +13,7 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                if (!userId || (userId && userId.length > 0)) {
+                if (userId == null || (userId && userId.length > 0)) {
                     const res = await axios.get(route, fetchConfig);
                     console.log(res.data);
                     setArticles(res.data);
