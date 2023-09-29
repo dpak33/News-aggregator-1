@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Article = require('../schemas/ArticleSchema');
 
 // Replace this with your MongoDB URI
-const MONGODB_URI = "mongodb+srv://dpakenham:OSIagKdJBObgukUA@cluster0.zmhqmr5.mongodb.net/NewsAggregator1?retryWrites=true&w=majority";
+//const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
