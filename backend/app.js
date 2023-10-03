@@ -19,7 +19,7 @@ const { router: articleRoute, fetchDataAndCleanUp } = require("./routes/articles
 
 
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 
 // Run your cleanup function
