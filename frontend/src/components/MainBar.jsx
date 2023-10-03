@@ -10,7 +10,7 @@ const MainBar = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get('http://localhost:8000/api/categories/mostRecent'); // adjust the URL based on your backend setup
+                const res = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/api/categories/mostRecent`);
                 setArticles(res.data);
             } catch (err) {
                 console.error(err);

@@ -22,7 +22,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
         if (!isLiked) {
             try {
                 console.log("User ID being sent:", userId);
-                await axios.post(`http://localhost:8000/api/likes/like/${encodedId}`, { userId },
+                await axios.post(`${process.env.REACT_APP_BASE_API_URL}/api/likes/like/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -42,7 +42,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
         }
         else {
             try {
-                await axios.post(`http://localhost:8000/api/likes/unlike/${encodedId}`, { userId },
+                await axios.post(`${process.env.REACT_APP_BASE_API_URL}/api/likes/unlike/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -61,7 +61,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
     const handleSaveToggle = async () => {
         if (!isSaved) {
             try {
-                await axios.post(`http://localhost:8000/api/saves/save/${encodedId}`, { userId },
+                await axios.post(`${process.env.REACT_APP_BASE_API_URL}/api/saves/save/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`
@@ -80,7 +80,7 @@ const Article = ({ article, userId, likeArticle, unlikeArticle, saveArticle, uns
         }
         else {
             try {
-                await axios.post(`http://localhost:8000/api/saves/unsave/${encodedId}`, { userId },
+                await axios.post(`${process.env.REACT_APP_BASE_API_URL}/api/saves/unsave/${encodedId}`, { userId },
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('user')}`

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ArticleList from '../helpers/ArticleList';
+import React from 'react';
 
 const YourSaved = ({ userId }) => {
     const fetchConfig = {
@@ -21,7 +22,7 @@ const YourSaved = ({ userId }) => {
     }
 
     return <ArticleList
-        route="http://localhost:8000/api/saves/saved-articles"
+        route={`${process.env.REACT_APP_BASE_API_URL}/api/saves/saved-articles`}
         pageTitle="Your saved"
         fetchConfig={fetchConfig}
     />;

@@ -20,7 +20,7 @@ const Login = (props) => {
 
         try {
             toast.loading('Loading...');
-            const response = await axios.post('http://localhost:8000/api/auth/login', userObj);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_API_URL}/api/auth/login`, userObj);
             toast.dismiss();
             if (response.data.success) {
                 const token = response.data.data;
