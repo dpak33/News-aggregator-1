@@ -25,7 +25,7 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
         };
         fetchArticles();
     }, [route, userId, params]); // Use params as a dependency instead of fetchConfig
-
+    //here
     return (
         <div className="article-container-pages">
             <div className="bg-image"></div>
