@@ -39,9 +39,11 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
                 <div></div>
             </div>
             <div className="article-list">
-                {articles.map((article, index) => ( // Note the change here
-                    <Article key={index} article={article} />
-                ))}
+                {articles
+                    .filter(article => !article.image.startsWith('https://kubrick.htvapp'))
+                    .map((article, index) => (
+                        <Article key={index} article={article} />
+                    ))}
             </div>
         </div >
     );

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Article = require('../schemas/ArticleSchema');
+require('dotenv').config();
 
 // Replace this with your MongoDB URI
 //const MONGODB_URI = process.env.MONGODB_URI;
