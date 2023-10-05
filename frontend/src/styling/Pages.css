@@ -83,6 +83,7 @@
     /* Adjust based on your image's size or how big you want it */
     height: 10px;
     /* Adjust based on your image's size or how big you want it */
+    background: url('../assets/sea-poster.jpeg') no-repeat center center;
     background-size: cover;
     z-index: -1;
     background-attachment: fixed;
@@ -96,6 +97,7 @@
     right: 0;
     /* This will position the pseudo-element to the bottom right */
     z-index: -1;
+    background-image: url('../assets/sea-poster.jpeg');
     background-repeat: no-repeat;
     background-size: contain;
     height: 750px;
