@@ -5,10 +5,10 @@ import Article from '../components/Article';
 import { Link } from 'react-router-dom';
 
 const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
-
     const [articles, setArticles] = useState([]);
 
-    const userId = fetchConfig.params && fetchConfig.params.userId;
+    const { params } = fetchConfig; // Destructure params from fetchConfig
+    const userId = params && params.userId;
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -24,8 +24,7 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
             }
         };
         fetchArticles();
-    }, [route, userId, fetchConfig]);
-
+    }, [route, userId, params]); // Use params as a dependency instead of fetchConfig
 
     return (
         <div className="article-container-pages">
@@ -39,13 +38,11 @@ const ArticleList = ({ route, pageTitle, fetchConfig = {} }) => {
                 <div></div>
             </div>
             <div className="article-list">
-                {articles
-                    .filter(article => !article.image.startsWith('https://kubrick.htvapp'))
-                    .map((article, index) => (
-                        <Article key={index} article={article} />
-                    ))}
+                {articles.map((article, index) => (
+                    <Article key={index} article={article} />
+                ))}
             </div>
-        </div >
+        </div>
     );
 }
 
