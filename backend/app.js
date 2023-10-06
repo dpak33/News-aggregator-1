@@ -34,11 +34,11 @@ app.use("/api/saves", jwtMiddleWare, savesRoute);
 app.use("/api/articles", articleRoute);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'build'))); // <-- Replace with your path
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 // Catch-all route
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build/index.html')); // <-- Replace with your path
+    res.sendFile(path.join(__dirname, '../frontned/build/index.html'));
 });
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
