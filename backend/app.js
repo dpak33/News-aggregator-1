@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 // Catch-all route
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontned/build/index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
