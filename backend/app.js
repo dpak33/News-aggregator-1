@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');  // <-- Include the path module
 const app = express();
 const cors = require('cors');
 const jwtMiddleWare = require('./middlewares/authMiddleware');
@@ -17,10 +18,7 @@ const likesRoute = require("./routes/likes");
 const savesRoute = require("./routes/saves");
 const { router: articleRoute, fetchDataAndCleanUp } = require("./routes/articles");
 
-
-
 const port = 8000;
-
 
 // Run your cleanup function
 fetchDataAndCleanUp();
@@ -34,6 +32,14 @@ app.use("/api/user", userRoute);
 app.use("/api/likes", jwtMiddleWare, likesRoute);
 app.use("/api/saves", jwtMiddleWare, savesRoute);
 app.use("/api/articles", articleRoute);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'build'))); // <-- Replace with your path
+
+// Catch-all route
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build/index.html')); // <-- Replace with your path
+});
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
 
