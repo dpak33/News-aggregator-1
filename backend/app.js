@@ -33,13 +33,6 @@ app.use("/api/likes", jwtMiddleWare, likesRoute);
 app.use("/api/saves", jwtMiddleWare, savesRoute);
 app.use("/api/articles", articleRoute);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-// Catch-all route
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-});
 
 app.listen(port, () => console.log(`Node JS server running on port ${port}!`));
 
