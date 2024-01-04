@@ -30,7 +30,7 @@ router.post('/save/:articleId', jwtMiddleWare, async (req, res) => {
 });
 
 router.post('/unsave/:articleId', jwtMiddleWare, async (req, res) => {
-    const userId = req.user._id;  // Assuming you send the userId in the request body
+    const userId = req.user._id;
     const originalId = decodeURIComponent(req.params.articleId);
     try {
         const article = await Article.findOne({ id: originalId });
